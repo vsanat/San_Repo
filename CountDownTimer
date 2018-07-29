@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { Subject, Observable, timer , interval, range, pipe} from 'rxjs';
+import {map} from 'rxjs/operators'
+import { CommunicatorService } from '../communicator.service';
+
+@Component({
+  selector: 'app-component1',
+  templateUrl: './component1.component.html',
+  styleUrls: ['./component1.component.css']
+})
+export class Component1Component implements OnInit {
+imSubject: any;
+  constructor(private service: CommunicatorService) { }
+
+  ngOnInit() {
+  }
+
+countdown : string;
+subscription : any;
+reset(){
+  const start = 10;
+  const totalTime = 12100; // 2 minuts => 5 minuts
+  const showAfter = 100; // 1 minut => 10 minuts
+  const intrvl = 3000; // 3 seconds
+  
+  if(this.subscription)
+    this.subscription.unsubscribe();
+
+  this.subscription = timer(showAfter, intrvl).pipe(map(i => totalTime - i*3000))
+  .subscribe(i => {
+    console.log(i)
+   if(i <= 0){
+    this.countdown = `Session timedout`;
+    this.subscription.unsubscribe();
+  }
+    else {
+      this.countdown = `Time remaining to tmeout ${this.millisToMinutesAndSeconds(i)}`
+    }
+    });
+  }
+
+  millisToMinutesAndSeconds(millis : number) {
+    const minutes = Math.floor(millis / 60000);
+    const seconds = +((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+}

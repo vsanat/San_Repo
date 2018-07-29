@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.4.3/Rx.js"></script>
+<h2 class="example">A heading with class="example"</h2>
+<p class="example">A paragraph with class="example".</p> 
+
+<p>Click the button to add a background color to the first element in the document with class="example".</p>
+
+<button onclick="myFunction()">Try it</button>
+<input type="text" id="test" />
+
+<script>
+
+    var input = document.querySelector("#test");
+    var observable = Rx.Observable.fromEvent(input, 'input');
+    observable
+    .map(x=>x.target.value)
+    .debounceTime(500)
+    .distinctUntilChanged()
+    .subscribe(x =>{console.log(x)})
+
+</script>
+
+</body>
+</html>

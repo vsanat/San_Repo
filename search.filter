@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get every element in the array that has a value of 18 or more.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+var fruits = ['asdr','ght','hHHtc','rrr','rrr1','1rrr'];
+
+function filterItems(query) {
+  return fruits.filter(function(el) {
+      return el.toLowerCase().indexOf(query.toLowerCase()) > -1;
+  })
+}
+
+function myFunction() {
+	console.log(filterItems('H'));
+}
+</script>
+
+</body>
+</html>

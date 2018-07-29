@@ -1,0 +1,144 @@
+
+** Block element - which takes the full length of the page -> p, h1, div
+
+** Inline elements - which takes sapce of its width -> span, em, b, img, a
+
+** (*)selector - applies to all the elements 
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  
+** margin -> transparent space between elements
+   padding -> transparent space between border and content
+   height, width -> is the content height and width not of the box
+
+**  .container{
+    width:1140px;		
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+** .blog-posts img{
+   height:150px;
+   width:auto;
+   border-radius: 50%; --> circular image
+  }
+  
+** Keep two divs side by side with the help of 'float:left' property
+ .clear-fix:after{
+   content:"";
+   display:table;
+   clear: both;
+  }  
+
+** Relative vs Absolute
+ If element position is relative then its position will be determined by other elements
+ the elements with Absoute position can be positioned anywhere we want inside its parent element.
+ --> Parent relative, --> child can be absolute
+ 
+** Chrome developer tool : blue -> content, orange -> margin, green -> padding 
+
+---typography -> art of arranging type to make written language readable and beautiful
+
+** font size - 15-20px for body text
+
+** headline font size - 30-60px or high with low font weight
+
+** Line spacing 120-150% (100% is default which squeezes the lines)
+
+** Line length should nt be very small or very lengthy
+
+** Font face and Font
+ Font face(type face) ->> Sans-serif or serif(more edges) -> mostly used, use with low font weight
+ Font ->> Open Sans, Lato -> google web fonts
+
+** Colors- use single base color black/white/gery/light blue shade
+
+** icons - use icon fonts
+
+** put whitespace -- between elements, between groups, between sections
+
+** Most of your content will be text, so beautiful typography is a key element to a good looking website.
+** Images are getting more and more important in webdesign, so choosing great images and putting text on them is an essential 
+ part of your work.
+** Icons are also a good way of setting a friendly tone for your website, but use them carefully.
+** The adequate use of whitespace makes a website look professionally designed, so use it a lot, but in the correct way.
+** Build a layout by defining the visual hierarchy of your content. Whitespace is also important for this.
+** Your website should be designed in a way that ensures that both the user and the owner of the website achieve their goals. 
+ This is the user experience.
+** It is very important that you get inspired by studying well-designed websites from other designers.
+
+** Beautiful Typography
+
+ 1. Use a font-size between 15 and 25 pixels for body text
+
+ 2. Use (really) big font sizes for headlines
+
+ 3. Use a line spacing between 120 and 150% of the font size
+
+ 4. 45 to 90 characters per line
+
+ 5. Use good fonts
+
+ 6. Chose a font which reflects the look and feel you want for your website
+
+ 7. Use only one font
+
+** Using Colors Like a Pro
+
+ 1. Use only one base color
+
+ 2. Use a tool if you want to use more colors
+
+ 3. Use color to draw attention
+
+ 4. Never use black in your design
+
+ 5. Choose colors wisely
+
+** Working with Images
+
+ 1. Put text directly on the image
+
+ 2. Overlay the image
+
+ 3. Put your text in a box
+
+ 4. Blur the image
+
+ 5. The floor fade
+
+** Working with icons
+
+ 1. Use icons to list features/steps
+
+ 2. Use icons for actions and links
+
+ 3. Icons should be recognizable
+
+ 4. Label your icons
+
+ 5. Icons should not take a center stage
+
+ 6. Use icon fonts whenever possible
+
+** Spacing and layout
+
+ 1. Put whitespace between your elements
+
+ 2. Put whitespace between your groups of elements
+
+ 3. Put whitespace between you website's sections
+
+ 4. Define where you want your audience to look first
+
+ 5. Establish a flow that corresponds to your content's message
+
+ 6. Use whitespace to build that flow
+
+** 
+
+
+

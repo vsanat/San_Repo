@@ -1,0 +1,25 @@
+# creates an id attribute
+
+. creates a class attribute
+
+[ ] creates a custom attribute
+
+> creates a child element
+
++ creates a sibling element
+
+^ climbs up
+
+* is element multiplication. This creates the same thing n number of times
+
+$ is replaced with an incremental number
+
+$$ is used for numbers with padding
+
+{ } creates text in an element
+
+lorem epsm code => p>lorem
+
+create image => pix-400x400-animals
+
+create placeholder => place-350x150-FF0000

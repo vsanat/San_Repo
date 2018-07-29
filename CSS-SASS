@@ -1,0 +1,125 @@
+#viewport meta tag 
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="John Doe">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+    The <meta> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable.
+  Meta elements are typically used to specify page description, keywords, author of the document, last modified, and other metadata.
+  The metadata can be used by browsers (how to display content or reload page), search engines (keywords), or other web services.
+  HTML5 introduced a method to let web designers take control over the viewport (the user's visible area of a web page), through the <meta> tag (See "Setting The Viewport" example below).
+  A <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling.
+
+  The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).
+  The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.
+  
+#final calculated size which browser understands is px
+
+#em and rem => both does font based calculation
+
+#em => font size based calculation if font-size is 24px then 2em => 48px, 
+  for the font => reference is the parent
+  for length(width, padding, margin) => it will be calculated based on current element font-size
+
+#rem => em does the calculation based on root element's font size(for both font-size and length) 
+
+#vh and vw => view port height and view port width this does % based calculation,
+  40vh => 40% of view port height
+
+#Imp points 
+  1. Browsers specify default font size for the root page
+  2. Each property has an initial value, if nothing is declared
+  3. Percentage and relative values are always converted into pixels
+  4. Percentage are measured relative to their parent's font-size, if used to specify font-size
+  5. Percentage are measured relative to their parent's width, if used to specify length(padding, margin, width)
+  6. em are measuerd relative to their parent's font-size, if used to specify font-size
+  7. em are measured relative to current font-size, if used to specify lengths
+  8. rem are always measured relative to the document's root font-size
+  9. vh and vw are simply percentage measured of the view port's height and width
+  
+ #line-height : it refers to the font-size, it can be inherited by the children
+  .parent{
+    font-size: 20px;
+    line-height:150%; => 30px or the same value if specified
+  }
+  .child{
+    font-size:25px; => computed line-height = 30px
+  }
+  
+  #Inheritance
+    1. Inheritance passes the values for some spcific properties from parents to children - more maintenable code
+    2. Properties related to text are inherited: font-family, font-size, color etc
+    3. The computed value of the property is what gets inherited, not the declared value
+    4. Inheritance of a property only works if no one(browser or developer) declares a value for that property
+    5. The inherit keyword forces inheritance on a certain property
+    6. The initial keyword resets a property to its initial value
+    
+#root element => html
+  reset all properties 
+    -> 
+      *, 
+      *::after, 
+      *::before {
+        margin:0;
+        padding:0;
+        box-sizing: inherit;
+    }
+    html{
+      font-size: 62.5%; => default browser is 16px so 10% of it
+    }
+    body{
+      font-family: Lato;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #443;
+      padding: 3rem;
+      box-sizing: border-box;
+    }
+    
+#BoxModel(this applies to block level elements only)
+  Content - The content of the box, where text and images appear
+  Padding - Clears an area around the content. The padding is transparent
+  Border - A border that goes around the padding and content
+  Margin - Clears an area outside the border. The margin is transparent
+  ==> https://www.w3schools.com/css/css_boxmodel.asp
+
+#The box-sizing CSS property defines how the user agent(browser) should calculate the 
+  total width and height of an element. By default in the CSS box model, the width and height you assign to an element 
+  is applied only to the element's content box. If the element has any border or padding, this is then added to the 
+  width and height to arrive at the size of the box that's rendered on the screen. This means that when you set 
+  width and height, you have to adjust the value you give to allow for any border or padding that may be added.
+  
+  box-sizing: content-box; => gives you the default CSS box-sizing behavior. If you set an element's width to 100 pixels, 
+    then the element's content box will be 100 pixels wide, and the width of any border or padding will be added 
+    to the final rendered width.
+    
+  box-sizing: border-box; => tells the browser to account for any border and padding in the values you specify 
+    for an element's width and height. If you set an element's width to 100 pixels, that 100 pixels will 
+    include any border or padding you added, and the content box will shrink to absorb that extra width. 
+    This typically makes it much easier to size elements.
+    
+  ==> https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing  
+
+#Box types: 
+  1. Block level boxes: by defualt block level box's display property is block, here box model works, they occupie 100%
+    of parent's width, and creates line break eg : p, div, h1
+    ==> display: block;
+    
+  2. Inline boxes: They occupie only contents space, no line breaks, no height and width, 
+    padding and margin(only horizontal ie left and right)
+    ==> display: inline;
+       
+  3. Inline-Block: mix of both, occupies only content, no line break, box model works.
+    ==> display: inline-block;
+
+
+
+
+
+
+
+
+
+

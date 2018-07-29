@@ -1,0 +1,112 @@
+Angualr2 
+Decorators => We write decorators just before the class name
+1. @Component - This ddecorator converts any simple class to a component
+  @Component({selector:'my-app', templateUrl:'.app/cust/myapp.component.html'})
+2. @NgModule - This converts any class to a module 
+  @NgModule({imports:[BorwserModule,HttpModule,FormsModule...], declarations:[AppComponent, CustomerComponent..]
+             providers:[CustomerService,HelperService..], bootstrap:[AppComponent]})
+3. @Injectable - This convert a class into a service
+  @Injectable()
+
+Entry Point of the application
+# app/main.ts
+  platformBrowserDynamic().bootstrapModule(AppModule);
+  >now it goes to AppModule where it find bootstrap to 'AppComponent' > goes to 'AppComponent' which is our entry component
+
+# Angular Directive: Using directives we can add dynamic behaviours to our HTML
+  > Component - Has a template
+  > Structural - Alters layout by add/remove/edit/replace HTML elements.
+    eg <li *ngFor="let item of items">
+    <p *ngIf="item.quantity>0">Available</p> - if true display it
+    
+# Adding Styles Array Metadata
+      export class CarPartsComponent {
+      import { Component } from '@angular/core';
+      @Component({
+      selector: 'car-parts',
+      template: `...`
+      styles:[`
+        .description {
+        color: #444;
+        font-size: small;
+        }
+        .price {
+        font-weight: bold;
+        }`
+     ]})
+==> The HTML Source
+  <p _ngcontent-dcy-2 class="description">These tires are the very best</p>
+  <p _ngcontent-dcy-2 class="price">€4.99</p>
+==> The CSS Source
+  .description[_ngcontent-dcy-2] {
+  color: #444;
+  font-size: small;
+  }
+  .price[_ngcontent-dcy-2] {
+  font-weight: bold;
+  }
+  
+=> Angular 2 adds this custom attribute to scope the CSS to only this component.  
+
+# Spread Syntex (ES2015 std)- where trippple dots tells that many more values are to come. In case of array we can denote something 
+by (...) stating its an array not a single value. Or we can say it can be used to concatinate arrays in easy way.
+  var parts = ['shoulders', 'knees']; 
+  var lyrics = ['head', ...parts, 'and', 'toes'];
+  
+# The router supports multiple kinds of guards:
+  1. CanActivate to mediate navigation to a route.
+  2. CanActivateChild() to mediate navigation to a child route.
+  3. CanDeactivate to mediate navigation away from the current route.
+  4. Resolve to perform route data retrieval before route activation.
+  5. CanLoad to mediate navigation to a feature module loaded asynchronously.
+
+# Property Binding: Property binding allows us to glue component properties to DOM element properties.
+  <img [src ]="carPart.image ">
+  The square brackets tell Angular to set this DOM element property to our component property. 
+  And if the component property changes, update this.
+
+#CLI: Command Line Interface
+
+# ng new my-project => this creates new angular project with all setup
+# ng serve => using CLI it will run the app
+
+# ngIf then else 
+  <div *ngIf="loggedIn;else login" >You are logged in</div>
+  <ng-template #login>Please login</ng-template>
+  
+  <div *ngIf="loggedIn;then logout else login">You are logged in</div>
+  <ng-template #logout><button>Logout</button></ng-template>
+  <ng-template #login>Please login</ng-template>
+  ==> Here wew are using <ng-template> as  wrapper for 'if' condition, we can place our elemets inside of it.
+  
+# The Angular <ng-container> is a grouping element that doesn't interfere with styles or layout because Angular doesn't
+  put it in the DOM.
+  <p>
+    I turned the corner
+    <ng-container *ngIf="hero">  <--- we don't hv to use any other element unnecessary
+      and saw {{hero.name}}. I waved
+    </ng-container>
+    and continued on my way.
+  </p>
+
+# <select [(ngModel)]="hero">
+  <ng-container *ngFor="let h of heroes">
+    <ng-container *ngIf="showSad || h.emotion !== 'sad'">
+      <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+    </ng-container>
+  </ng-container>
+</select>
+===========================================================================================
+
+# Typescript is superset of javacript, it is strong type, TS code will be transpiled to javascript
+
+# @angular/platform-browser vs. @angular/platform-browser-dynamic
+  -> platform-browser contains code shared for browser execution (DOM thread, WebWorker)
+  -> platform-browser-dynamic contains the client side code that processes templates (bindings, components, ...) 
+    and reflective dependency injection
+  
+  When the offline template compiler is used(say AOT), platform-browser-dynamic isn't necessary anymore because all reflective 
+  access and metadata are converted to generated code.
+
+# Component - combination of template, class and metadata - its easy to update, easy to export, reusable
+  @Component({selector:'my-app', templateUrl:'./my-app.component.html'})

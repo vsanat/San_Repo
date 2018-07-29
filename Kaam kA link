@@ -1,0 +1,6 @@
+https://github.com/FontFaceKit/open-sans
+https://fonts.google.com/?selection.family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800
+https://github.com/FortAwesome/Font-Awesome/issues/7681
+
+for..of ==> can iterate thru only array gives value at that index
+for..in ==> iterate thru array/objesct if array then it will give index if object then properties

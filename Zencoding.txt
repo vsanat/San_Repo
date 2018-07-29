@@ -1,0 +1,151 @@
+1) html:5 => generate html5 
+
+
+2) # creates an id attribute
+=> div#mydiv
+
+=> section#mysection>#header+.left_col+.right_col>.image+.text
+
+
+
+<section id="mysection">
+        
+	<div id="header"></div>
+        
+	<div class="left_col"></div>
+
+        <div class="right_col">
+
+          <div class="image"></div>
+
+          <div class="text"></div>
+
+        </div>
+
+</section>
+
+
+
+3) . creates a class attribute
+
+
+
+
+4) [ ] creates a custom attribute
+
+
+
+
+5) > creates a child element
+
+
+
+
+6) + creates a sibling element
+
+
+
+7) 
+
+^ climbs up
+
+
+
+
+8) 
+* is element multiplication. This creates the same thing n number of times
+
+
+
+
+9) $ is replaced with an incremental number
+
+
+
+
+10) $$ is used for numbers with padding
+
+
+
+
+11) { } creates text in an element
+
+
+
+
+12) lorem epsm code => p>lorem
+
+
+
+
+13) create image => pix-400x400-animals
+
+
+
+
+14) create placeholder => place-350x150-FF0000
+
+
+=> span#mydiv.mypclass[height=12]>h1{blah blah}
+
+ <span id="mydiv" class="mypclass" height="12">
+
+      <h1>blah blah</h1>
+
+ </span>
+
+=> ul.myul#myulid>li#$$.myli*10
+
+    <ul class="myul" id="myulid">
+
+      <li id="01" class="myli"></li>
+
+      <li id="02" class="myli"></li>
+
+      <li id="03" class="myli"></li>
+
+      <li id="04" class="myli"></li>
+
+      <li id="05" class="myli"></li>
+
+      <li id="06" class="myli"></li>
+
+      <li id="07" class="myli"></li>
+
+      <li id="08" class="myli"></li>
+
+      <li id="09" class="myli"></li>
+
+      <li id="10" class="myli"></li>
+
+    </ul>
+
+15) table>(tr>td{book$}+td{cost$$})*5
+
+=> <table>
+
+    <tr>
+	<td>book1</td>
+
+      <td>cost01</td>
+
+    </tr>
+
+    <tr>
+
+      <td>book2</td>
+      <td>cost02</td>
+    </tr>
+    <tr>
+      <td>book3</td>
+      <td>cost03</td>
+    </tr>
+    <tr>
+      <td>book4</td>
+      <td>cost04</td>
+    </tr>
+    <tr>
+      <td>book5</td>
+      <td>cost05</td>
+    </tr>
+  </table>

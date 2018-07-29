@@ -1,0 +1,66 @@
+Callback -> Promise -> Observable
+Callback is not controllable, meaning it will execute all the callback parameters, 
+unlike in Promise if resolve has come it will not execute the error or vise versa. 
+Observable will never complete utill Complete or Error is emited
+
+var somePromise = new Promise((resolve, reject) => {
+  setTimeout(()=>{
+    resolve('Hey, it worked!');
+  }, 2500)
+});
+
+somePromise.then((resolve)=>{console.log(resolve);}, (reject)=>{console.log(reject);});
+
+https://api.darksky.net/forecast/5470a537496ef8c8717a265824aaf8be/21.0357648,81.5456384
+https://maps.googleapis.com/maps/api/geocode/json?address=patan%20durg%20chhattisgarh
+AA007HRWWM
+put - AA007HU16G
+
+for..of ==> can iterate thru only array gives value at that index
+for..in ==> iterate thru array/objesct if array then it will give index if object then properties
+
+* Promise: The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
+         const myFirstPromise = new Promise((resolve, reject) => {
+          // do something asynchronous which eventually calls either:
+          //
+          //   resolve(someValue); // fulfilled
+          // or
+          //   reject("failure reason"); // rejected
+        });
+
+* Fetch: A fetch function is now provided in the global window scope, with the first argument being the URL:
+    // url (required), options (optional)
+    fetch('https://davidwalsh.name/some/url', {
+      method: 'get'
+    }).then(function(response) {
+
+    }).catch(function(err) {
+      // Error :(
+    });
+---example fetch------  
+      var request = new Request('https://mydataservice001.azurewebsites.net/api/EmployeeInfoRESTAPI', {
+      headers: new Headers({
+        'Content-Type': 'text/plain'
+      })
+    });
+    fetch(request).then(function(res) { console.log(res)});
+
+Proxy: The Proxy object is used to define custom behavior for fundamental operations (e.g. property lookup, assignment, 
+enumeration, function invocation, etc).
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+    handler - Placeholder object which contains traps.
+    traps - The methods that provide property access. This is analogous to the concept of traps in operating systems.
+    target - Object which the proxy virtualizes. It is often used as storage backend for the proxy. 
+    Invariants (semantics that remain unchanged) regarding object non-extensibility or non-configurable properties are verified
+    against the target.
+    var p = new Proxy(target, handler);
+    
+* ES6 object destructuring ==>
+  var user = {name:'Sanat', add:'Bhilai', age:40}
+  var {name, age} = user;
+  console.log(name, age)    
+
+* var san = {name:'san', age:20}
+var ar2= {age:25}
+var ar3 = {...san, ...ar2} //{name: "san", age: 25}
+console.log(ar3)

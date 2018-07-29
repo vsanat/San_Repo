@@ -1,0 +1,111 @@
+Async -> Promises based
+tradiotional web server -> process based, every req execute in its own process, seperate security model, easy transaction management
+v8 => c++, c, uvlib
+
+https://goo.gl/SW1t2M
+
+io blocking -> for the input output is not immeadeatly
+node is single thread object model ->event queue -> event loop -> internall c++ thread pool(only the blocking tasks)
+
+clients requests -> goes to Event queue{non io blocking(calculations), io blocking(db call, upload file, reporting...)}
+blocking io request goes to c++ thread pool(internally multi thread)
+
+Node.js architecture 
+-Node.js core lib 
+-Node js bindings
+-google v8 - uv lib
+
+Node web server -> we can create own web server
+
+LTS - long term support
+-> fast because of C(kernal level) no inter perter needed
+-> disadvantage - single thread, if it crashes the app is down(this may happen in onpremise but not in cloud(load balancer))
+
+
+* use cases
+REST+JSON
+Media streaming
+Chat app -> socket.io
+
+* Limitations
+first come first serves
+single thread
+developer must do exception handling 
+lack of maturity - becaue its most of the packages are written by the community
+not suited for cpu boud apps and app deal with huge amount of data
+
+https://goo.gl/SW1t2M
+
+1. node runtiime => nodejs.org
+  a. nodejs runtime
+  b. node.js plateform for hosting
+  c. nodejs environment using npm command using node.js commmand prompt
+    i. CLI for installing node.js dependencies for current workspace
+2. the node.js practically 
+  a. create package json for managing dependencies
+    i. configuration file for the workspace
+  
+Alt+Shif+f => format the code  
+  
+
+var names = ['San', 'Man', 'Dan'];
+for (var n in names)
+    console.log(names[n])  
+    
+https://onedrive.live.com/?authkey=%21AC2ol6eogPe0oPw&id=F36CBBC23C45A3E0%2186324&cid=F36CBBC23C45A3E0
+https://www.docker.com/
+https://socket.io/
+
+http://www.dotnetcurry.com/nodejs/1216/using-nodejs-process-post-data
+http://www.dotnetcurry.com/nodejs/1212/upload-files-using-nodejs
+create a node application having following specifications
+1. it should have an employee array contiang values for emp no , emp name , salary, dept name, designation
+create a view(html), containg the form having submit button and text boxes for properties of employee, when user enters 
+data in these text boxes and clicks on submit button the data should go to the server and check if emp no already exist
+if not then posted data should be pushed into employees array and array should be returend, if employee no is repeated the nduplicated entry 
+error must be sent back.
+on server side check for the following ,emp no and salary should not be negative , text entry shouldn't accept digits or 
+special chars. If any validation error occures return the required error message to the client
+
+only string 
+ var format = /[!@#$%^&*0-9()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+ if(format.test(res[1]))
+            return { status: false, message: 'Invalid emp name' }; 
+
+EXPRESS.js
+1. rest APi(http request processing)
+2. static file generation 
+3. talk to data base
+4. it can make other http calls
+5. authentication
+6. routing
+
+node js provide runtime for express
+we can use express for middleware, to connect any other logical modules(BL, DAL,), we can also integrate express for http management
+serve recieve the body and parse the body
+
+==> assignment 2
+modify the rest api to check for the uniqueness of the employee number in post request
+implement various validation on employee by creating seperate validate finctions accepting posted data. 
+The responce should provide validation error message to the client, cerate put and delete functionalities in put validate the model.
+Autogenerate emp no in a post request.
+
+https://www.mongodb.com/download-center?jmp=nav#community
+https://studio3t.com/download/
+
+**
+multiple async calls happens in mongoose to help it we have to use global.Promise
+
+//1. Load mongoose
+var mongooseDrv = require('mongoose')
+//2. set promise object globally to manage async calls
+mongoose.Promise = global.Promise;
+//3. Defince connection
+mongooseDrv.conncet('mongodb://localhost/')
+
+assignment 3
+create users collection in Mongo having username and password. Controll the access of rest api calling mongo with the help of 
+authentication against users collection. 
+
+http://www.dotnetcurry.com/nodejs/1302/nodejs-token-based-authentication-security
+

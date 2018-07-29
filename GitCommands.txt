@@ -1,0 +1,17 @@
+1: git clone https://wfs-github.wellsfargo.com/1SCF/1SCF.git
+
+2: git status
+
+3: git add index.html
+	git add -A
+	--> this will add all files
+
+4: git commit -m 'added index.html file'
+	--> this will just be locked
+	--> to save it in github.com do below
+
+5: git push
+	--> this will sync the changes to github.com
+
+6: git pull
+	--> this will get the data from github.com

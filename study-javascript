@@ -1,0 +1,571 @@
+** what is "use strict" - this is useful in debug mode, the code which fails silently will now generate errors, it is a string,
+    because it can be simply ignored by the older browser which doesn't support strict mode, we can add it explicitly in a function 
+    or out side of a function.
+    san = 1 ; (object in global window)// ok in non strict mode but error in strict mode
+    //problem without strict mode
+    var theVal = 1
+    c.l(theVal) ==> 1
+    thVal = 2;
+    c.l(theVal) => 1
+    
+    var let = 1; // error in strict mode - use of reserved key word 
+    
+    we can not deleted variable, function, function arguements in strict mode
+    var something = 1;
+    deleted something;//error in strict
+    
+    var fun = function (){c.l('hi')}
+    delete fun;//error in strict
+    
+    -> in non strict mode variable created in eval may leake out but not in strict mode
+    var a = 2;
+    eval("var a = 1")
+    c.l(a); //1 in non strict -- 2 in strict mode
+    
+    "use strict"
+    eval("var b = 2")
+    c.l(b) ; //error b is not defined
+    
+** does javascript passes parameters by value or by reference
+    primitive types (var, string, number, boolean) are passed by values and objectes are passed by ref. Meaning if you change 
+    the value inside the function it will not affect outer variable values for primitive, but it will change the value of ref type
+    
+    //value type
+    var a = 3;
+    function foo(a){
+        a = 1;
+    }
+    foo(a)
+    console.log(a);// 3
+    
+    //ref type
+    var obj = {name:'San'}
+    function foo(obj){
+        obj.name ="Man";
+    }
+    foo(obj)
+    console.log(obj.name) //Man
+    
+    //note - we can not change what obj points to we can only change the properties       
+    var a = {'moo': 'too'};
+    function moo (a){
+        a = {'too':'moo'}
+    }
+    moo(a);
+    console.log(a) ;//Object {moo:'too'}
+    
+** what are the different types in js -> 6
+    Boolean //true/false  typeof(true) => boolean
+    Number //1, 1.0 typeof(1) => number
+    String //"",'' typeof('a') => string
+    Null //null typeof(null) => object
+    Undefined // undefined typeof(undefined) => undefined
+    Object(non primitive) //{}, new Object{} typeof({}) => object
+    
+** js is dynamically typed or statically typed language
+    js is dynamically typed language means type of a variable will be determined at the runtime
+    var a = 'Hi';
+    typeof(a) ;// string
+    a = 1; 
+    typeof(a) ; // number
+
+** undefined : unknown, uninitialized
+    var a;
+    c.l(a) ;// undefined
+    undefined is given by the javascript engine(it never gives null for any variable value) but null is given by the programmer
+    var a = null;
+    c.l(a) ; //null
+    
+    c.l(null == undefined); //true
+    c.l(null === undefined); //false
+
+** == (equality checks for only value) and === (strict equality checks for type and value)
+    0 == '' // true here js engine does type coersion
+    0 == '0' //true
+    0 === '' //false
+    0 === '0' //false
+    
+** NaN = result of an operation of numbers which is not a number
+    typeof(NaN);//number
+    "abc"/4 => NaN
+    -> NaN compare to anything even itself is a false
+    NaN == NaN => false
+    NaN == false => false
+    
+    isNaN("1") ; //false implicite coerse -> isNaN(Number("1")) -> isNaN(1) => false
+    isNaN("A"); //true isNaN(Number("A")) -> isNaN(NaN) => true
+    
+** scope in js - any variable declared outsied of a function is always declared in global scope, 
+and they are available everywhere, anythign declared inside a function will be available in that function only
+    function foo(){
+        var a = 5;
+    }
+    c.l(a) ; // undefined
+    
+    -> js does not have scope variable concept
+    for(var i = 0 ; i< 5 ; i++){
+        var j = 5 ;
+    }
+    c.l(j); => 5
+    c.l(i); => 5
+note -> if we keep for loop inside of a function then 'j' will be undeifned again
+note2 -> if we change var i to let i then it will become local to for loop
+    
+** variable hoisting: js engine hoist the declared variable to the top of its scope
+    c.l(a) ; //undefined, not an error(in strict also)
+    var a = 1;
+    
+    above will be converted to 
+    var a;
+    c.l(a)
+    a = 1;
+    -> for functions also it does hoisting, it moves complete function definition itself to the top
+    foo();
+    function foo(){
+        console.log("foo called")
+        moo();
+    }
+    function moo(){
+        console.log("moo called")
+    }
+    //output -> foo called
+                moo called
+    
+    - note this is not true in case of anonymous funtions or function expressions
+    foo(); ==> error
+    var foo = function(){
+    c.l('foo called')
+    }
+    ==> this will be converted to 
+    var foo;
+    foo(); --> foo is not a function at this point
+    foo = function(){
+    c.l('foo called')
+    }
+    
+** Lexical(means it depends upon the way we write the code physically) nature of the scope 
+    chain: js engine try to find the varibale inside of the function then out side of the function
+    
+    function foo(){
+    console.log(myvar); // error myvar is undefined
+    }
+    function moo(){
+    var myvar = 1 
+    foo();
+    }
+    moo();
+    
+    //but    
+    function moo(){
+    var myvar = 1; 
+      function foo(){
+        console.log(myvar); // 1 this is lexical nature of the scope chain
+                        //ie the scope chain is defined by how the code is physically written on the page, not the calling
+      }
+    foo();
+    }
+    moo();
+
+** IIFE - Immideatly invoked function exporession - with the help of IIFE we can scope all the variables of a file to a 
+function scope, so that we can prevent the global scope from polluting
+    --main.js
+    var thing = {'hello':'main.js'}
+    c.l('main', thing)    
+    --other.js
+    var thing = {'hello':'other.js'}
+    c.l('other', thing)
+    -- index.html 
+    <script scr="main.js">
+    <script scr="other.js">
+    --here other.js will overrite the main.js variable
+    
+    so we can pervent this by scoping the variables
+    --main.js
+    var thing = {'hello':'main.js'}
+    function() main{    
+    c.l('main', thing) }
+    main();
+    --or--
+    var thing = {'hello':'main.js'}
+    (function(){    
+    c.l('main', thing) })()
+    
+    --other.js
+    (function(){
+    var thing = {'hello':'other.js'}
+    c.l('other', thing)})()
+    -- index.html 
+    <script scr="main.js">
+    <script scr="other.js">
+    c.l ==> Object {hello:'main.js'}
+
+** What is funtion Closure : A closure is an inner function that has access to the outer (enclosing) function's variables—scope chain.
+The closure has three scope chains: it has access to its own scope (variables defined between its curly brackets), 
+it has access to the outer function's variables, and it has access to the global variables. Note: closure can keep reference 
+of outer function's variables if they are used in inner funtion, even after the outer function is retured.
+    function sayHello(name){
+        var text = "Hello " + name;
+        return function(text){
+            console.log(text)
+        }
+    }
+    sayHello("San")();
+    //or
+    var say = sayHello("San")
+    say();
+ 
+ Note 2: closuer always points to the current value of the variable
+    var foo = [];
+    for(var i = 0; i < 10; i++){
+        foo[i] = function(){return i}
+    }
+    console.log(foo[0]()); //10 //closuer keep the last reference of the variable
+    console.log(foo[1]()); //10
+    console.log(foo[2]()); //10
+//get 0,1,2 with the help of IIFE
+    var foo = [];
+    for(var i = 0; i < 10; i++){
+        (function(){
+            var v = i;
+            foo[i] = function(){return v}    
+        })()
+        
+    }
+    console.log(foo[0]()); //0 // IIFE keeps the reference of variables when it was created
+    console.log(foo[1]()); //1
+    console.log(foo[2]()); //2
+//or 
+    var foo = [];
+    for(var i = 0; i < 10; i++){
+        (function(v){            
+            foo[v] = function(){return v}    
+        })(i)        
+    }
+    console.log(foo[0]()); //0
+    console.log(foo[1]()); //1
+    console.log(foo[2]()); //2
+
+** this keyword : this referes to calling context
+    var san = 1;
+    console.log(san) //1
+    console.log(this.san) //1
+    console.log(window.san) //1
+    
+  function checkThis(){
+    console.log(this)
+  }
+  checkThis() // global window object
+
+  var testThis = {
+    checkThis : function(){
+      console.log(this)
+    }
+  }
+  testThis.checkThis() // testThis object
+  var func = testThis.checkThis();
+  func() // windows object
+ 
+ // other example
+ var testThis = {
+    checkThis : function(){
+      console.log(this); // testThis object
+      function otherFunc(){
+        this.moo = 1; // windows object // with use strict this is an error because 'this' is undefined here
+        console.log(this); // windows object
+      }
+      console.log(this.moo) // undefined becasue moo is in windows object
+      otherFunc()
+    }
+  }  
+  testThis.checkThis() // testThis object
+  window.moo => 1
+  
+//to overcome frm this problem we can assign 'this' to self or vm and use it
+   var testThis = {
+    checkThis : function(){
+      var self = this;
+      console.log(self)
+      function otherFunc(){
+        self.moo = 1;
+        console.log(self)      
+      console.log(self.moo)}
+      otherFunc()
+    }
+  }  
+  testThis.checkThis() 
+
+** funtions : In javascripts functions are very much similar to objects
+    function san(param1, param2){
+        console.log(this);
+    }
+    san.moo = 1;
+    
+    //similar to other objects we can use common functions
+    console.log(san.toString());
+
+    -> function.call()
+    //call the function using call function, we can use it to stabilize 'this', in strict mode it may give undefined, 
+    //if we use it inside a function 
+    san.call();
+    //in call function we can also pass the parameters, and first parameter will always be 'this'
+    //we can pass whatever we want to 'this'
+    function a(b,c,d){
+        console.log(this);
+        console.log(b);
+        console.log(c);
+        console.log(d);
+    } 
+
+    a.call(1,2,3,4);
+    //first pamameter is always the object, if left blank means window object is being passed automatically 
+
+    -> function.apply()
+    this is similart to call(), only difference in arguments, here its an array
+    a.apply(null, [1,2,3,4])
+
+    -> function.bind()
+    this is also similar to call and apply but just one parameter
+    var b = function(){console.log(this)}.bind(1)
+    var san = {
+        checkThis: function(){
+            var checkOther = function(){
+            console.log(this);
+        }.bind(this);
+        checkOther();
+      }
+    }
+    san.checkThis();
+
+    we can use - call, apply and bind to stabilize 'this' 
+
+** prototype chaining
+    var animal = {
+        kind:'human',
+        planet: 'earth'
+    }
+    var san = Object.create(animal); //this is the way to create prototype chaining or inheritance
+    console.log(san.kind);// first it will try to find the property kind in san(local object),
+    //then it will go to animal object then base object
+    console.log(animal.isPrototypeOf(san)); //animal is protype of base object
+    san.kind = 'bang'; // this will create new proprty in san (it can override the animal property)
+    console.log(san.kind);
+    console.log(animal.kind);
+
+    console.log(animal.hasOwnProperty('planet')) // true
+    console.log(san.hasOwnProperty('planet')) // false
+
+** Object Oriented
+    //In javascript class is a function
+    function Person(fname, lname){
+        this.firstName = fname;
+        this.lastName = lname;
+        this.fullName = function (){
+            return this.firstName + ' ' + this.lastName;
+        }   
+    }
+
+    var dude1 = new Person("San", "Ver");
+    console.log(dude1);
+    console.log(dude1.fullName());
+
+    //with the help of call() function also we can create object of Person
+    var dude2 = {}
+    Person.call(dude2, "Man", "Ver");
+    console.log(dude2);
+    console.log(dude2.fullName());
+
+    //above two will create two different objects of Person, if we want something common for all the objects then we can use 
+    //prototype, this is very much similar to static member in C#
+    Person.prototype.fullNameProto = function(){
+        return this.firstName + ' ' + this.lastName;
+    }
+
+    var dude3 = new Person("Lan", "Ver");
+    console.log(dude1.fullNameProto());
+    console.log(dude3.fullNameProto());
+
+    dude3.middleName = "Km"
+    console.log(dude3);
+    //we can use closuers if we want to create private members
+
+
+** Inheritance
+    function Person(fname, lname){
+        this.firstName = fname;
+        this.lastName = lname;
+    }
+
+    Person.prototype.fullNameProto = function(){
+        return this.firstName + ' ' + this.lastName;
+    }
+
+    function Professional(honorific, fname, lname){
+        Person.call(this, fname, lname); //this will let Professional class access Person class properties
+        this.honorific = honorific;
+    }
+
+    Professional.prototype = Object.create(Person.prototype); //inheriting the prototype of Person
+    Professional.prototype.profFullNameProto = function(){
+        return this.honorific + ' ' + this.firstName + ' ' + this.lastName;
+    }
+
+    var prof = new Professional("Mr.", "Dare", "Devil"); //creating object using function constructor
+    console.log(prof.profFullNameProto());
+    console.log(prof.fullNameProto());
+    console.log(prof);
+
+    //** Prototype chaining - another way of inheritance
+    var Person = {
+        fullName: function(){
+            return this.fname +' ' + this.lname
+        }
+    }
+
+    var dude = Object.create(Person);
+    console.log(dude); // dude object proto -> Person object
+
+    //first way to bootstrap the object(initialize the properties)
+    var Person = {
+        init: function(fname, lname){
+            this.fname = fname;
+            this.lname = lname;
+        },
+        fullName: function(){
+            return this.fname +' ' + this.lname
+        }
+    }
+    var dude = Object.create(Person);
+    dude.init("Dare", "Devil")
+    console.log(dude.fullName());
+
+    //second way to bootstrap the object(initialize the properties)
+    var Person = {
+        fullName: function(){
+            return this.fname +' ' + this.lname
+        }
+    }
+    var dude = Object.create(Person, {
+        fname: {value:"Dare"},
+        lname: {value: "Devil"}
+    });
+    console.log(dude.fullName());
+
+    //third way
+    var Person = {
+        fullName: function(){
+            return this.fname +' ' + this.lname
+        }
+    }
+    function PersonFactory(fname, lname){
+        var person = Object.create(Person);
+        person.fname = fname;
+        person.lname = lname;
+        return person;
+    }
+
+    var dude = PersonFactory("Dare", "Devil");
+    console.log(dude.fullName());
+
+** Immutability is a design pattern where something can't be modified after being instantiated. 
+    If we want to change the value of that thing, we must recreate it with the new value instead. 
+    Some JavaScript types are immutable and some are mutable, meaning their value can change without having to recreate it. 
+    Let's explain this difference with some examples:
+    let movie = {
+      name: 'Star Wars',
+      episode: 7
+    };
+
+    let myEp = movie.episode;
+
+    movie.episode = 8;
+
+    console.log(myEp); // outputs 7
+    As you can see in this case, although we changed the value of movie.episode, the value of myEp didn't change. 
+    That's because movie.episode's type, number, is immutable.
+    let movie1 = {
+      name: 'Star Wars',
+      episode: 7
+    };
+
+    let movie2 = movie1;
+
+    movie2.episode = 8;
+
+    console.log(movie1.episode); // outputs 8
+    In this case however, changing the value of episode on one object also changed the value of the other. That's because movie1 and movie2 are of the Object type, 
+    and Objects are mutable.
+    Of the JavaScript built-in types, the following are immutable:
+    Boolean
+    Number
+    String
+    Symbol
+    Null
+    Undefined
+    And the following are mutable:
+    Object
+    Array
+    String's an unusual case, since it can be iterated over using for...of and provides numeric indexers just like an array, but doing something like:
+    let message = 'Hello world';
+    message[5] = '-';
+    console.log(message); // writes Hello world
+    This will throw an error in strict mode and fail silently in non-strict mode.
+
+** CORS - Cross Origin resource Sharing-- Browser can block the responceof GET method, Browser can block the request of PUT/POST/DELETE.
+    Browser by default blocks the responce if the GET request was genereated by other origin than the server,
+    it only allows same origin resource(same origin policy) CORS is a mechanism that allows us to selectivily unblock some requests from another origin. 
+    Browser always send 'Origin' details whenver sending any request and expects same origin in 'Access-Control-Allow-Origin' to be same
+    as the request or it can be *, if not then browes will block that responce
+        GET-----Origin:moo.com----->
+        block <-------Access-Control-Allow-Origin: gogle.com---
+    GET: For GET request browser checks if the responce is coming from the same origin or not, if not it will block the responce
+    PUT/POST/DELETE: For these requests browser checks if the responce of OPTION request contains that same http method in
+        Access-Control-Allow-Methods : PUT,POST
+    Before PUT/POST/DELETE
+        send OPTIONS request moethod(pre-flight request) -----Origin:moo.com; Access-Control-Request-Method:PUT ----->
+        allow <-------Access-Control-Allow-Methods:PUT -----------------------------------------------------------
+        now send PUT request method ------------------------------------------->
+    https://test-cors.org    
+
+** JSONP: We can use JSONP to pull data from other origins, but this will only work for GET requests
+    callbackFunction([{"id":1, "name":"san"}])
+    call the url of othere origin in script tag, and override above function in script tag, so browser will download the data from
+    other origin and give it to the overriden function
+
+** Difference between event bubbling and capturing
+    whenever any event fires all the elements are going to listen it twice. Event starts from the root goes to
+    the target and back from target to the root
+    --------1st round--------- event Capturing phase--------------------->
+    window > document > div1 > div2 > div3 > button
+    <----------------- event Bubbling phase -----------2nd round----------
+    if we don't specify the phase by default it listens to event bubbling phase
+    <script>
+    var items = document.getElementsByClassName("item");
+    for(var i = 0 ; i < items.length ; i++){
+        (funciton (){
+            var y = i ;
+            items[y].addEventListener("click", function(event){
+                console.log(items[y], event);
+            }, false) --> by default false means event bubbling phase, make it true for capturing phase
+        })()
+    }
+    </script>
+
+** Difference between stopPropagation() and preventDefault():
+    stopPropagation: it stops the callbacks from moving forward, 
+    in whichever step we do stop propagation it will stop the event from capturing/bubbling forward to another element.
+     --------X stop-------------------->
+    window > document > div1 > div2 > div3 > button
+    <----------------- X stop----------
+    preventDefault: calling preventDefault in any event listener stops the default behaviour of the element, 
+    say if we add prevent default in checkbox it will never get checked but this will not stop the events from propagation
+
+
+
+
+
+
+
+
+
+
+
