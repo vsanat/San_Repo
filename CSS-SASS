@@ -129,7 +129,9 @@
   3. Absolute Positioning: element is removed from the normal flow, no impact on surrounding contnt or elements,
     we use top, bottom, left and right to offset the element from its relatively
     positioned container.
-    ==> position: absolute; position:fixed;
+    ==> position: absolute; position:fixed; /*static|absolute|fixed|relative|sticky|initial|inherit;*/
+
+#Stacking context: creating layers with the help of z-index
 
 
 
