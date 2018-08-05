@@ -194,4 +194,9 @@
     }
   ==> if we use mixin inplace of extend that may create two different classes for btn-main and btn-hot
 
+#package for sass -> npm i node-sass --save-dev
+  "scripts": {
+    "compile-sass": "node-sass sass/main.scss css/style.css -w"
+  }
+  > npm run compile-sass
 
