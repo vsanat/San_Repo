@@ -133,10 +133,65 @@
 
 #Stacking context: creating layers with the help of z-index
 
+************************************************************* SASS ************************************
+#SASS: syntactically awesome style sheet - 
+  two ways to write SASS
+  1. SASS way: based on indentations
+  2. SCSS way(Sassy CSS): similar to functional programming
 
+#Rules
+  1. variable name should start with $
 
+  2. @mixin - similar to function, help in implementing DRY
+      @mixin style-link-text($color) {
+        text-decoration:none;
+        text-transform:uppercase;
+        color: $color;
+      }
+      a:link {
+        @include style-link-text($color-text-dark);
+      }
 
+  3. placeholder and extend
+      %btn-placeholder {
+      padding:10px;
+      display: inline-block;
+      border-radius: 100px;
+      text-align:center;
+      width:$width-button;
+      @include style-link-text($color-text-light);
+    }
 
+    .btn-main{
+      &:link{
+        @extend %btn-placeholder; -> this will copy .btn-main:link to the placeholder code
+        background-color:$color-secondary;
+      }
+      &:hover{
+        background-color: darken($color-secondary, 15%);
+      }
+    }
 
+    .btn-hot{
+      &:link{
+        @extend %btn-placeholder; -> this will copy .btn-hot:link to the placeholder code
+        background-color:$color-tertiary;
+      }
+      &:hover{
+        background-color:lighten($color-tertiary, 15%)
+      }
+    }
+  ==> compiled css
+    .btn-main:link, .btn-hot:link {
+      padding: 10px;
+      display: inline-block;
+      border-radius: 100px;
+      text-align: center;
+      width: 150px;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: #eee;
+    }
+  ==> if we use mixin inplace of extend that may create two different classes for btn-main and btn-hot
 
 
