@@ -560,6 +560,9 @@ of outer function's variables if they are used in inner funtion, even after the 
     say if we add prevent default in checkbox it will never get checked but this will not stop the events from propagation
 
 
+=============================JavaScript for Web Developers ===========================================
+Ecma => European computor manufacturers association, stadndardized the js, and new scripting language called ECMAScript
+
 
 
 
