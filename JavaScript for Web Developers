@@ -20,8 +20,17 @@ JavaScript => has three distinct parts
   > async: optional, indicates script should begin downlading immidiately but should not prevent other actions on the 
     page such as downloading resources or waiting for other scripts to load.
   > charset: optional 
-  > defer: optional, indicates that the execution of the script can safely be deffered until the document prsing has been
-    completely parsed and displayed, valid for external scripts
+  > defer: optional, indicates that the download should begin immediately but execution of the script can safely be 
+    deffered until the document prsing has been completely parsed and displayed, valid for external scripts
   > language: deprecated
   > src: optional, indicates external file that contains code to be executed
   > type: optional, text/javascript, text/ecmascript
+
+</script> => we can not have "</script>" tag anywhere in our, it throws error
+  alert("</script>") -> invalid or unexpected token, to overcome this error we can escepe "/" by doing "<\/script>"
+
+# include js file from external location: <script type="text/javascript" src="external.js"></script>
+  note that a <script> element using src attribute should not include additional JavaScript code between <script> and 
+    </script> tags. If both are provided, the script file downloaded and executed while inline code is ignored.
+  One of the most powerful and most controversial parts of <script> element is its ability to include JavaScript files 
+    from outside domains.
