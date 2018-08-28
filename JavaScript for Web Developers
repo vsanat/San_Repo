@@ -1,0 +1,17 @@
+=============================JavaScript for Web Developers ===========================================
+Ecma => European computor manufacturers association, stadndardized the js, and new scripting language called ECMAScript
+
+SVG => Scalable Vector Graphics
+
+BOM => Browser Object Model 
+  > new popup window
+  > move, resize and close browser window
+  > the navigator object which provides detailed info about the browser
+  > the location object, which gived detailed info about the page loaded in the browser
+  > the screen object, which gives info about user's screen resolution
+  > support of cookies
+
+JavaScript => has three distinct parts 
+  > ECMA script - which provides core functionality
+  > DOM, which provides methods and interfaces for working with the content of a web page
+  > BOM, which provides methods and interfaces for interacting with the browser
