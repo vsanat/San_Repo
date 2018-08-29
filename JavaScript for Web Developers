@@ -34,3 +34,13 @@ JavaScript => has three distinct parts
     </script> tags. If both are provided, the script file downloaded and executed while inline code is ignored.
   One of the most powerful and most controversial parts of <script> element is its ability to include JavaScript files 
     from outside domains.
+    
+# benefit of using external js files: browser caches all externally linked js files as per the browser settings
+
+# document modes:
+  html5 mode => <!DOCTYPE html>
+
+# <noscript> element: can be used in case if JavaScript is disabled in the browser, we can use any element inside noscript
+  <npscript>
+    <p>Please enable JavaScript</p>
+  </noscript>  
