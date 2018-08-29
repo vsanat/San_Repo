@@ -44,3 +44,18 @@ JavaScript => has three distinct parts
   <npscript>
     <p>Please enable JavaScript</p>
   </noscript>  
+
+# interpretation: all <script> elements are interpreted in the order in which they occur on the page, for nondeferred scripts
+  the browser must complete interpretation of the code inside <script> element before it can continue rendering the 
+  rest of the page. For this reason <script> elements are usually included towards the end of the page. We can defer the
+  execution of the script untill the document has rendered by using 'defer' attribute.
+
+
+
+
+
+
+
+
+
+
