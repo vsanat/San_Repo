@@ -50,6 +50,7 @@ JavaScript => has three distinct parts
   rest of the page. For this reason <script> elements are usually included towards the end of the page. We can defer the
   execution of the script untill the document has rendered by using 'defer' attribute.
 
+# "use strict": it's a pragma which tells JavaScript engine to run into strict mode
 
 
 
