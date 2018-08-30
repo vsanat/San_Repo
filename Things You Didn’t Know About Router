@@ -1,5 +1,5 @@
-//loading icon for entire app
-app.component.ts
+//spinner for entire app
+//app.component.ts
 constructor(private router: Router){
   router.events.subscribe((routerEvent: Event) =>{
     this.checkRouterEvent(routerEvent);
@@ -15,3 +15,36 @@ checkRouterEvent(routerEvent: Event):void{
       this.loading = false;
     }
 }
+
+//app.component.html
+<span class="glyphicon glyphicon-refresh glyphicon-spin spinner"
+      *ngIf="loading"></span>
+<router-outlet></router-outlet>
+
+
+===========================================================
+//enable all router events logs
+RouterModule.forRoot([{routes}...], {enableTracing: true})
+
+===========================================================
+//guard service for candecativate
+//movie.edit.guard.ts
+@Injectable()
+export class MovieEditGuard implements CanDeactivate<MovieEditComponent>{
+  canDeactivate(component: MovieEditComponent): boolean{
+    if(component.isDirty){
+      const title = component.movie.title || 'New Movie';
+      return confirm(`Lose all changes to ${title}?`);
+    }
+    return true;
+  }
+}
+//app-routing.module.ts
+{
+  path:'movies/:id/edit',
+  resolve: {movie: MovieResolver},
+  canDeactivate: [MovieEditGuard],
+  componet: MovieEditComponent
+}
+
+
