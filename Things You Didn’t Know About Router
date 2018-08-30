@@ -47,4 +47,7 @@ export class MovieEditGuard implements CanDeactivate<MovieEditComponent>{
   componet: MovieEditComponent
 }
 
+======================Material================================
+slides: bit.ly/ngConf18
+code: https://github.com/DeborahK/MovieHunter-routing
 
