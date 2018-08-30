@@ -1,3 +1,32 @@
+// Build a Resolver Service (Preventing Partial Page Display)
+//movie.resolver.ts
+@Injectable()
+export class MovieResolver implements Resolve<IMovie> {
+  constructor(private movieService: MovieService) { }
+  resolve(route: ActivatedRouteSnapshot,
+          state: RouterStateSnapshot): Observable<IMovie> {
+    const id = route.paramMap.get('id');
+    return this.movieService.getMovie(+id);
+  }
+}
+// Register the Resolver
+//app.module.ts
+ providers: [ MovieService, MovieResolver]
+ 
+//Add Resolver to Route
+//app-routing.module.ts
+ {
+  path: 'movies/:id',
+  resolve: { movie: MovieResolver }, 
+  component: MovieDetailComponent
+ },
+ 
+//Read Resolver Data
+//movie-detail.component.ts
+ ngOnInit(): void {
+   this.movie = this.route.snapshot.data['movie'];
+}
+======================Spinner======================================
 //spinner for entire app
 //app.component.ts
 constructor(private router: Router){
