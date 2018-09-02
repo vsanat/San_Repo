@@ -52,7 +52,23 @@ JavaScript => has three distinct parts
 
 # "use strict": it's a pragma which tells JavaScript engine to run into strict mode
 
+# In typescript class member cannot have let, var or const. But scope(function) variable must have let, var or const
 
+# var keyword: inside a function if we use var it makes local varibale to the function, as soon as function exits
+  it deletes the variable from memory. But if we create a variable without 'var' it makes it global variable
+  function test(){
+    var message = 'hi';
+  }
+  test();
+  alert(message);// error
+  
+  function test(){
+    message = 'hi';
+  }
+  test();
+  alert(message);// hi
+  
+  https://dev.to/sarah_chima/var-let-and-const--whats-the-difference-69e
 
 
 
