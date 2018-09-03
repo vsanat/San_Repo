@@ -148,4 +148,36 @@ JavaScript => has three distinct parts
   console.log('abcd\'efghi') => abcd'efghi
   {}.toString() => to string of object is [object object]
 
-
+# object type
+  var o = {};
+  o.name = 'san';
+  var o1 = new Object(); or new Object;
+  o1.name = 'man';
+  o and o1 both are same
+  
+# Unray operators: 1. increment and decrement operators: two types of operators here prefix and postfix
+  prefix increment or decrement => ++num or --num
+  var age = 20;
+  var anotherAge = ++age + 2
+  c.l.(age); => 21
+  c.l.(anotherAge); => 31
+  ** prefix increment or decrement changes the value before even the satement is evaluated
+  
+  var num1 = 2;
+  var num2 = 20;
+  var num3 = --num1 + num2; => 21
+  var num4 = num1 + num2; => 21
+  
+  ** postfix increment or decrement doesn't occur until after the containing statement has been evaluated.
+  var num1 = 2;
+  var num2 = 20;
+  var num3 = num1-- + num2; => 22
+  var num4 = num1 + num2; => 21
+  
+  
+  
+  
+  
+  
+  
+  
