@@ -111,7 +111,24 @@ JavaScript => has three distinct parts
   There is a function to check if the value is within JS's range
   isFinite(00007878); => true
 
+# NaN: This is a special numeric value, which used to inidicate when an operation intended to return number has failed.
+  eg divide by 0. Any operation involved with NaN returns NaN, and NaN is not equal to any value including NaN. 
+  c.l.(isNan(NaN)); true
+  c.l.(isNan(10)); false
+  c.l.(isNan('10')); false
+  c.l.(isNan('blue')); true
+  c.l.(isNan(true)); false => it can be converted to 1
 
-
+# Number conversions, + is same as Number function
+  console.log(Number(' ')); //0
+  console.log(parseInt(' ')); //NaN
+  console.log(Number(false)); //0
+  console.log(parseInt(false)); //NaN
+  console.log(parseInt(1.999)); //1
+  console.log(parseFloat(1.999)); //1.999
+  
+  console.log(Number('23q3qwqw')); //NaN
+  console.log(parseInt('23q3qwqw')); //23
+  console.log(parseFloat('23.3qwqw')); //23.3
 
 
