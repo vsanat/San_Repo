@@ -84,15 +84,32 @@ JavaScript => has three distinct parts
   console.log(typeof message); => undefined
   console.log(typeof age); => undefined
 
+# Null type: Logically null value is an empty object pointer, which is why typeof returns 'object' when it's passed a null
+  value in the following example
+  var car = null;
+  c.l(typeopf car); => ojbect
+  undefined is derivative of null, so ECMA-262 defines them to be superfivially equals 
+  c.l(null == undefined); => true
 
-
-
-
-
-
-
-
+# All type of values have Boolean equivalents in ECMAScript
+  var test = 'abcd'; or {}, 1
+  c.l.(Boolean(test)); => true
   
+  var test = 0; '',null,undefined
+  c.l.(Boolean(test)); => false
+  
+  this is what happens in if statement
+
+# rounding error in JavaScript(this error is not related to JS its becuase of  IEEE-754 based numbers)
+  c.l.(.1+.2) => 0.30000000000000004
+  c.l(.1+.02) => 0.12000000000000001
+
+# range of values
+  console.log(Number.MAX_VALUE); => 1.7976931348623157e+308
+  console.log(Number.MIN_VALUE); => 5e-324
+  any value beyond these sizes is calle Infinity and -Infinity
+  There is a function to check if the value is within JS's range
+  isFinite(00007878); => true
 
 
 
