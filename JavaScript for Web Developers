@@ -138,6 +138,14 @@ JavaScript => has three distinct parts
   parseInt('AF', 16); => 175 or parseInt('0xAF')
   parseInt('AF'); => NaN
 
-
+# character literals
+  \n => new line
+  \t => tab
+  \b => backspace
+  \n => new line
+  \' => single quote
+  \" => double quote
+  console.log('abcd\'efghi') => abcd'efghi
+  {}.toString() => to string of object is [object object]
 
 
