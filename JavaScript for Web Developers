@@ -73,6 +73,26 @@ JavaScript => has three distinct parts
 # data types: 5 primitive data types and 1 complex data type 
   Undefined, Null, Boolean, Number, String and Object 
 
+# myvar; => error myvar is not defined. 
+  either we have to do var myvar; or let myvar or const myvar or we have to initialize with some value myvar = '';
+  else not defined error. 
+
+# in JavaScript we can not define the type of variable while declaring it. It is always decides at run time.
+  We can use typeof keyword to check the type of a variable. Type of function is object
+  but typeof may confuse sometime
+  var message;
+  console.log(typeof message); => undefined
+  console.log(typeof age); => undefined
+
+
+
+
+
+
+
+
+
+  
 
 
 
