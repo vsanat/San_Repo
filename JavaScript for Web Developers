@@ -174,6 +174,9 @@ JavaScript => has three distinct parts
   var num3 = num1-- + num2; => 22
   var num4 = num1 + num2; => 21
   
+  2. unary plus and minus: Unary plus and minus are translated to => 
+    +num => Number(num)
+    -num => -Number(num)
   
   
   
