@@ -155,7 +155,7 @@ JavaScript => has three distinct parts
   o1.name = 'man';
   o and o1 both are same
   
-# Unray operators: 1. increment and decrement operators: two types of operators here prefix and postfix
+# Unray(single or in one variable only) operators: 1. increment and decrement operators: two types of operators here prefix and postfix
   prefix increment or decrement => ++num or --num
   var age = 20;
   var anotherAge = ++age + 2
