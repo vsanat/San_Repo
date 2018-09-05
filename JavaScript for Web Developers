@@ -178,7 +178,21 @@ JavaScript => has three distinct parts
     +num => Number(num)
     -num => -Number(num)
   
+  # multiplicative operators: three multiplicative operators are there multiply, divide and modulus
+    => if either of the operands isn't a number , it is converted to a number behind the scene using Number() function
   
+  # add: -0+0 => +0
+         -0-0 => -0
+    if any of operand is other than number(object, boolean or string) then toSting() will be called to get string
+    value both operands will be concatinated. For undefined and null the String() function gives "undefined" and "null"
+    console.log(1+String(undefined)) => 1undefined
+    console.log(1+'1') => 11
+    'the sum of 5 + 5 is ' + (5+5) =>   the sum of 5 + 5 is 10
+    it instructs the interpreter to calculate the parentheses first
+    console.log(1 + null) => 1; because Number(null) => 0
+    console.log(1 + undefined) => NaN;
+
+
   
   
   
