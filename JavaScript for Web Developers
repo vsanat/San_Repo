@@ -192,6 +192,23 @@ JavaScript => has three distinct parts
     console.log(1 + null) => 1; because Number(null) => 0
     console.log(1 + undefined) => NaN;
 
+# Relational operators:
+  1. If both the operands are string then first character of each string is converted into code and comparison happens
+    console.log('Aabcd'<'a'); //true 
+    console.log('a'<'ac'); //true --> if first charater is same it takes second charater
+    console.log('23'<'3'); //true
+
+  2. If any of the operand is number then both other operand will be converted into number
+    console.log('23'<3); //false
+    console.log({}<3); //false --> it will try to convert {} into number which in turn give NaN. Any comparison with 
+      NaN gives false
+  
+  3. Object comparison
+      console.log({}=={}); //always false
+      console.log({}<'a'); //true
+      console.log('{}'<'a'); //false
+
+
 
   
   
