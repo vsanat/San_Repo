@@ -259,5 +259,12 @@ JavaScript => has three distinct parts
     var url = href;
     }
   
+  # we can create objects by object literal {} or with new Object. Both are same
+    we can access object properties either using dot notation or via bracket notation
+    
+    var obj = {name: "Nick", "5test":"Something"}
+    c.l(obj.name); => Nick
+    c.l(obj.5test); => error
+    c.l(obj["5test"]); => Something // this is very useful when we pass property name dynamically
   
   
