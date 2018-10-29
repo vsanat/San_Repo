@@ -243,7 +243,21 @@ JavaScript => has three distinct parts
       }
   }
   console.log(num); => 95
+
+# with statement: The with statement sets the scope of the statment within a perticular object.
+  with(expression) statement;(note: this may downgread the performace)
+    
+    var qs = location.search.substring(1);
+    var hostName = location.hostname;
+    var url = location.href;
   
+  This code can be rewritten using the with statement
+    
+    with(location){
+    var qs = search.substring(1);
+    var hostName = hostname;
+    var url = href;
+    }
   
   
   
