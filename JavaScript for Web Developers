@@ -208,9 +208,41 @@ JavaScript => has three distinct parts
       console.log({}<'a'); //true
       console.log('{}'<'a'); //false
 
+# do while statement: this is post test loop 
+  do{
+    //statement
+  } while(expression);
 
+# while statement: this is pretest loop
+  while(expression){
+    //statement
+  }
 
+# labeled break and continue statements: This can be used to return the execution to a perticular location in the code.
+  This is typically used when there is loops inside of loops
   
+  var num = 0;
+  outermost:
+  for(var i=0; i<10; i++){
+      for(var j=0; j<10; j++){
+          if(i==5 && j==5)
+              break outermost; //this will break to outermost meaning it will break inner as well as outer loop
+              //break to this label, if we just to break it will break inner loop only and output will be 95
+         num++;
+      }
+  }
+  console.log(num); => 55
+  
+  var num = 0;
+  outermost:
+  for(var i=0; i<10; i++){
+      for(var j=0; j<10; j++){
+          if(i==5 && j==5)
+              continue outermost; 
+          num++;
+      }
+  }
+  console.log(num); => 95
   
   
   
