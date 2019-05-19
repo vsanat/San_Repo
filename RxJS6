@@ -129,7 +129,7 @@
       const course$ = createHTTPObservable('api/course/courseid');
       const lesson$ = createHTTPObservable('api/lesson');
       forkJoin(course$, lesson$).pipe(
-            tap((course, lesson) => {
+            tap(([course, lesson]) => {
                   console.log('course', course);
                   console.log('lesson', lesson);
             }) //tap end
