@@ -1,14 +1,25 @@
 # interval, timer 
-# conaact, concatMap
-# merge, mergeMap
-# exhaustMap
-# switchMap
+
+# conaact, concatMap => concatinates all streams, waits untill the first one is completed
+
+# merge, mergeMap => merges all the streams, do not wait does parallel calls  
+
+# exhaustMap => waits for first to comeplte ignore all others in between (save button click mulptiples times)
+
+# switchMap => emits latest only, unsubscribes current one if it gets new one (typeahead server calls)
+
 # debounceTime => waits untill the stream is stabled for given time
+
 # distinctUntilChanged
+
 # use object/array destructuring
+
 # use spread operators
+
 # .pipe(...catchError()) throwError both should return obesrvable
+
 #  inside pipe everything must return obesrvable
+
 #  Observable.create(observer => {
       observer.next(some value),
       observer.error(throw error), //error and complete are mutually exclusive
@@ -57,9 +68,39 @@
                   filter(() => this.form.valid),
                   concatMap(changes => this.saveCourse(changes)) //saveCourse is http call
            ).subscribe();
+
+# fetch api abortController
+      const http$ = Observable.create( observer => {
+            const controller = new AbortController();
+            const signal = controller.signal;
+            
+            fetch('api/courses', {signal})
+            .then(response => {
+                  return response.json();
+            })
+            .then(body => {
+                  observer.next(body);
+                  observer.complete();
+            })
+            .catch(err => {
+                  observer.error(err);
+            })
+            
+            return () => cotroller.abort(); 
+            //return value of an observer is always unsubscription function
+      });
       
-      
-      
+ # typeahead
+      ngAfterViewInit(){
+           this.lessons$ = fromEvent(this.input.nativeElement, "keyup")
+                           .pipe(
+                              map(event => event.traget.value)
+                              ,startWith('') //this will emit '' for initialization
+                              ,debounceTime(400) //wait for 400ms when user stops typing
+                              ,distinctUntilChanged() //take unique valuse, when shift key press same value appears twice
+                              ,switchMap(search => this.loadLessons(search))
+                           );
+      }
       
       
       
