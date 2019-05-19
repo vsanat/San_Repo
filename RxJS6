@@ -28,3 +28,35 @@
                   observer.error(err);
             })
       });
+      
+# <table *ngIf="(lessons$ | async) as lessons" >
+      <tr *ngFor="let lesson of lessons">
+            <td>{{lesson.title}}</td>
+
+# shareReplay
+      beginnerCourses$: Observable<Course[]>;
+      advancedCourses$: Observable<Course[]>;
+      
+      const courses$ = http$.pipe(
+            map(res => Object.values(res["payload"])),
+            shareReplay()
+      );
+      
+      this.beginnerCourses$ = courses$
+            .pipe(
+                  map((courses) =>courses.filter(course => course.category == 'BEGINNER'))
+            ); //subscribe this in HTML
+            
+      this.advancedCourses$ = courses$
+            .pipe(
+                  map((courses) =>courses.filter(course => course.category == 'ADVANCED'))
+            ); //subscribe this in HTML     
+      
+      
+      
+      
+      
+      
+      
+      
+      
