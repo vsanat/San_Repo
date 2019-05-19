@@ -2,7 +2,14 @@
 2. merge, mergeMap
 3. exhaustMap
 4. switchMap
-
-debounceTime => waits untill the stream is stabled for given time
-use object/array destructuring
-use spread operators
+5. debounceTime => waits untill the stream is stabled for given time
+6. distinctUntilChanged
+7. use object/array destructuring
+8. use spread operators
+9. .pipe(...catchError()) throwError both should return obesrvable
+10. inside pipe everything must return obesrvable
+11. Observable.create(observer => {
+      observer.next(some value),
+      observer.error(throw error), //error and complete are mutually exclusive
+      observer.complete()
+    })
