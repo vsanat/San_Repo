@@ -51,7 +51,12 @@
             .pipe(
                   map((courses) =>courses.filter(course => course.category == 'ADVANCED'))
             ); //subscribe this in HTML     
-      
+
+# reactive form auto save
+      this.form.valueChanges.pipe(
+                  filter(() => this.form.valid),
+                  concatMap(changes => this.saveCourse(changes)) //saveCourse is http call
+           ).subscribe();
       
       
       
