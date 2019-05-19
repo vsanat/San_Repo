@@ -1,15 +1,30 @@
-1. conaact, concatMap
-2. merge, mergeMap
-3. exhaustMap
-4. switchMap
-5. debounceTime => waits untill the stream is stabled for given time
-6. distinctUntilChanged
-7. use object/array destructuring
-8. use spread operators
-9. .pipe(...catchError()) throwError both should return obesrvable
-10. inside pipe everything must return obesrvable
-11. Observable.create(observer => {
+# interval, timer 
+# conaact, concatMap
+# merge, mergeMap
+# exhaustMap
+# switchMap
+# debounceTime => waits untill the stream is stabled for given time
+# distinctUntilChanged
+# use object/array destructuring
+# use spread operators
+# .pipe(...catchError()) throwError both should return obesrvable
+#  inside pipe everything must return obesrvable
+#  Observable.create(observer => {
       observer.next(some value),
       observer.error(throw error), //error and complete are mutually exclusive
       observer.complete()
     })
+    
+    const http$ = Observable.create( observer => {
+            fetch('api/courses')
+            .then(response => {
+                  return response.json();
+            })
+            .then(body => {
+                  observer.next(body);
+                  observer.complete();
+            })
+            .catch(err => {
+                  observer.error(err);
+            })
+      });
