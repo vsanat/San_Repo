@@ -101,8 +101,28 @@
                               ,switchMap(search => this.loadLessons(search))
                            );
       }
+
+# custom debugger
+      export const debug = (level: number, message: stirng) => 
+                   (source: Observable<any>) => source.pipe(
+                        tap(val =>{
+                              if(level >= rxjsLogginLevel){
+                                    console.log(message + ':', val);
+                              }
+                        }
+                     ) //tap end
+                   ) //pipe end
+      //this is called higher order function becuase this is a function which returns a function(of type observable here)
       
-      
-      
+      fromEvent(this.input.nativeElement, "keyup")
+                           .pipe(
+                              map(event => event.traget.value)
+                              ,startWith('') //this will emit '' for initialization
+                              ,debug(rxjsDebugLevel.INFO, "search") // we are passing current observable val in function
+                              ,debounceTime(400) //wait for 400ms when user stops typing
+                              ,distinctUntilChanged() //take unique valuse, when shift key press same value appears twice
+                              ,switchMap(search => this.loadLessons(search))
+                              ,debug(rxjsDebugLevel.INFO, "lesson value")
+                           );
       
       
