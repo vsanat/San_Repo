@@ -102,7 +102,7 @@
                            );
       }
 
-# custom debugger
+# custom RxJS debugger
       export const debug = (level: number, message: stirng) => 
                    (source: Observable<any>) => source.pipe(
                         tap(val =>{
@@ -124,5 +124,15 @@
                               ,switchMap(search => this.loadLessons(search))
                               ,debug(rxjsDebugLevel.INFO, "lesson value")
                            );
-      
+
+# forkJoin
+      const course$ = createHTTPObservable('api/course/courseid');
+      const lesson$ = createHTTPObservable('api/lesson');
+      forkJoin(course$, lesson$).pipe(
+            tap((course, lesson) => {
+                  console.log('course', course);
+                  console.log('lesson', lesson);
+            }) //tap end
+      ) //pipe end
+
       
