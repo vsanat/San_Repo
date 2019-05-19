@@ -1,0 +1,8 @@
+1. conaact, concatMap
+2. merge, mergeMap
+3. exhaustMap
+4. switchMap
+
+debounceTime => waits untill the stream is stabled for given time
+use object/array destructuring
+use spread operators
