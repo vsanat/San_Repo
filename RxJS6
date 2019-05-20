@@ -212,5 +212,12 @@
             series$.subscribe((val)=>console.log("late subscription", val)); //1,2,3 
       }, 3000)
 
-
-
+# force the completion of long running observable by first or take operators
+      - first operator takes first value from the observable the completes
+            this.courese$.getLongRunningCourses.pipe(
+                  first() //get first value then complete the observable
+            )
+      - take operator takes first count values from the observable source then completes
+            this.courese$.getLongRunningCourses.pipe(
+                  take(2) //get first two value then complete the observable
+            )
