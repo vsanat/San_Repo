@@ -141,21 +141,77 @@
       const subject = new Subject(); //this should be private
       
       const series$ = subject.asObservable(); // this we can public because it has only subscribe method
-      series$.subscribe(console.log); //here its observable
+      series$.subscribe((val)=>console.log("early subscription", val)); //here its observable
       
       subject.next(1); //here its observer
       subject.next(2);
       subject.next(3);
+      
+      //Subject has no memory by default, so we can not use it for late subcription
+      setTimeout(()=>{
+            series$.subscribe((val)=>console.log("late subscription", val)); //prints nothing
+             subject.next(4); // both subscriber will receive the value
+      }, 3000)
+      
       subject.complete();
 
+# BehaviourSubject: unlike the Subject it remembers the last emitted value unless it's complete.
+      We also have to provide initial value to BehaviourSubject
+      
+      const subject = new BehaviourSubject(0);
+      
+      const series$ = subject.asObservable();
+      series$.subscribe((val)=> console.log("early subscription", val)); //0,1,2,3
+      
+      subject.next(1);
+      subject.next(2);
+      subject.next(3);
+      
+      //subject.complete(); //if we it complete here then late subscriber will not receive any value
+      
+      setTimeout(()=>{
+            series$.subscribe((val)=>console.log("late subscription", val)); //prints 3
+             subject.next(4); // both subscriber will receive the value
+      }, 3000)
+      
+      subject.complete();
 
+# AsyncSubject: this could be used for long running calculations, this emits only one value just before the completion,
+      and discards all intermediate values, and similar to Behaviuor Subject this also remebers the last value
+      
+      const subject = new AsyncSubject();
+      
+      const series$ = subject.asObservable();
+      series$.subscribe((val)=> console.log("early subscription", val)); //3
+      
+      subject.next(1);
+      subject.next(2);
+      subject.next(3);
+      
+      subject.complete();
+      
+      setTimeout(()=>{
+            series$.subscribe((val)=>console.log("late subscription", val)); //3 
+            //it remembers last value even after completion
+      }, 3000)
 
-
-
-
-
-
-
+# ReplaySubject: This emits all the values to all the subscribers(early/late) regardless of its completion
+      
+      const subject = new ReplaySubject();
+      
+      const series$ = subject.asObservable();
+      series$.subscribe((val)=> console.log("early subscription", val)); //3
+      
+      subject.next(1);
+      subject.next(2);
+      subject.next(3);
+      
+      subject.complete();
+      
+      setTimeout(()=>{
+            series$.subscribe((val)=>console.log("late subscription", val)); //3 
+            //it remembers last value even after completion
+      }, 3000)
 
 
 
