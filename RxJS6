@@ -200,17 +200,16 @@
       const subject = new ReplaySubject();
       
       const series$ = subject.asObservable();
-      series$.subscribe((val)=> console.log("early subscription", val)); //3
+      series$.subscribe((val)=> console.log("early subscription", val)); //1,2,3
       
       subject.next(1);
       subject.next(2);
       subject.next(3);
       
-      subject.complete();
+      subject.complete(); //even after completion it remembers all emitted values and replay it to the late subscribers
       
       setTimeout(()=>{
-            series$.subscribe((val)=>console.log("late subscription", val)); //3 
-            //it remembers last value even after completion
+            series$.subscribe((val)=>console.log("late subscription", val)); //1,2,3 
       }, 3000)
 
 
