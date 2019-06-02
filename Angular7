@@ -127,7 +127,37 @@ by (...) stating its an array not a single value. Or we can say it can be used t
     <input #input placeholder="This is content"/>
   </my-copmonent>
 
+# The ng-template directive and ngIf else
+  <div class="lessons-list" *ngIf="lessons else loading">
+  ... 
+  </div>
 
+  <ng-template #loading>
+      <div>Loading...</div>
+  </ng-template>
+  
+ ==> the use of ngIf also creates a second implicit ng-template! Let's have a look at what is happening under the hood
+  <ng-template [ngIf]="lessons" [ngIfElse]="loading">
+   <div class="lessons-list">
+     ... 
+   </div>
+  </ng-template>
+
+  <ng-template #loading>
+      <div>Loading...</div>
+  </ng-template>
+  
+#   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 
