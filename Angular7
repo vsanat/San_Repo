@@ -128,6 +128,12 @@ by (...) stating its an array not a single value. Or we can say it can be used t
   </my-copmonent>
 
 # The ng-template directive and ngIf else
+  the ng-template directive represents an Angular template: this means that the content of this 
+  tag will contain part of a template, that can be then be composed together with 
+  other templates in order to form the final component template. 
+  Angular is already using ng-template under the hood in many of the structural 
+  directives that we use all the time: ngIf, ngFor and ngSwitch
+  
   <div class="lessons-list" *ngIf="lessons else loading">
   ... 
   </div>
@@ -147,12 +153,47 @@ by (...) stating its an array not a single value. Or we can say it can be used t
       <div>Loading...</div>
   </ng-template>
   
-#   
+# We can not use multiple structural directives in same element 
+  <div class="lesson" *ngIf="lessons"> 
+       *ngFor="let lesson of lessons">
+    <div class="lesson-detail">
+        {{lesson | json}}
+    </div>
+  </div>  
   
+  Error ==> 
+  Uncaught Error: Template parse errors:
+  Can't have multiple template bindings on one element. Use only one attribute 
+  named 'template' or prefixed with *
+ 
+# ng-contentainer: In order to avoid having to create that extra div in above example, 
+  we can instead use ng-container directive:
   
+  <ng-container *ngIf="lessons">
+    <div class="lesson" *ngFor="let lesson of lessons">
+        <div class="lesson-detail">
+            {{lesson | json}}
+        </div>
+    </div>
+  </ng-container>
   
+# ngTemplateOutlet: We can also take the template itself and instantiate it anywhere on the page, 
+  using the ngTemplateOutlet directive:
   
+  <div class="lesson" *ngIf="false else load"> => ng-template's content will load here if condition is false
+        <div class="lesson-detail">
+            test
+        </div>
+  </div>
   
+  <ng-template #load>
+     <span>helllllo</span>
+  </ng-template>
+
+  <div style="background-color:red">
+    <ng-container *ngTemplateOutlet="load" ></ng-container> => ng-template's content will load here also, without any condition
+  </div>
+
   
   
   
