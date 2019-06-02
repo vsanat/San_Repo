@@ -110,3 +110,25 @@ by (...) stating its an array not a single value. Or we can say it can be used t
 
 # Component - combination of template, class and metadata - its easy to update, easy to export, reusable
   @Component({selector:'my-app', templateUrl:'./my-app.component.html'})
+
+# Content Projection: 
+  It projects the content of parent component in the child component
+  
+  my-component.html => 
+  <ng-content></ng-content>
+  
+  app.component.html =>
+  <my-component>
+    <input placeholder="This is content"/> --> this is the content which will be projected in my-component
+  </my-copmonent>
+
+# ContentChild and ContentChildern: These can be used to grab reference of component content
+  <my-component>
+    <input #input placeholder="This is content"/>
+  </my-copmonent>
+
+
+
+
+
+
