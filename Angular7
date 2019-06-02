@@ -122,10 +122,17 @@ by (...) stating its an array not a single value. Or we can say it can be used t
     <input placeholder="This is content"/> --> this is the content which will be projected in my-component
   </my-copmonent>
 
-# ContentChild and ContentChildern: These can be used to grab reference of component content
-  <my-component>
-    <input #input placeholder="This is content"/>
-  </my-copmonent>
+# ContentChild and ContentChildern: These can be used to grab reference of component's content
+  (which comes via content projection)
+    <my-component>
+      <input #input placeholder="This is content"/>
+    </my-copmonent>
+
+    my-component.ts =>
+      @ContentChild('input') input : HTMLInputElement;
+      ngAfterContentInit(){
+        c.l(this.input);
+      }
 
 # The ng-template directive and ngIf else
   the ng-template directive represents an Angular template: this means that the content of this 
