@@ -4,3 +4,8 @@
   3. Components do not modify data directly, it has to be done via store
   4. In order to modify data component need to emit events (not commands) in form of actions.
   5. Store decides whether to modify data in server or in-memory, and it does it by reducers or effects. Then emits new version of data.
+
+# Store is a centralized singleton service, that acts as inmoemory database that contains whole applcation state. 
+  In oerder to modify data we need to dispatch an action. 
+  
+# Reducer: Goal of a reducer fucntion is to calculate new store state in responce to a given action.
