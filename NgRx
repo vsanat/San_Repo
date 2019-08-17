@@ -9,3 +9,32 @@
   In oerder to modify data we need to dispatch an action. 
   
 # Reducer: Goal of a reducer fucntion is to calculate new store state in responce to a given action.
+
+# Selector: All subscribers get values on any change in store, in order to get value from perticular change of value
+ we can use selectors because it remembers the calculations.
+  ///create selector
+  import {createSelector} from '@ngrx/store'
+  
+  export const selectAuthState = state => state.auth; //one selector
+  export const isLoggedIn = createSelector(
+    selectAuthState, //here we can inject multiple selectores 
+    auth => auth.loggedIn //this is projection, retrun value
+  );
+  
+  export const isLoggedOut = createSelector(
+  isLoggedIn,
+  loggedIn => !loggedIn
+  );
+  
+  ///use selector
+  import {select, Store} from '@ngrx/store'
+  import {isLoggedIn} from './auth/auth.selectors';
+  
+  class Abc..
+  isLoggedIn$: Observable<boolean>;
+  ngOnInit(){
+    this.isLoggedIn$ = this.store.pipe(
+      select(isLoggedIn)
+    );
+  }
+  
