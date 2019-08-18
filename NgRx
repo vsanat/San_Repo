@@ -105,7 +105,21 @@
   bindings between angular router and store. We should do custom router serialization to 
   reduce performance issues. See documentations for Custom Router State Serializer 
   
+  //enable router state
+  app.module.ts
+  ...
+  imports:[
+    StoreRouterConnectingModule..forRoot({stateKey:'router'})
+  ]
+  //we need to serializ the router state to prevent from performace issues, because by default 
+  it tries to store all the information about the route state tree. We just beed route params and query params.
+  We can create Custom Router State Serializer using the documentation
   
+  //plug it in
+  index.ts
+  export const reducers: ActionReducerMap<AppState> = {
+    router: routerReducer //recently created serializer
+  };
   
   
   
