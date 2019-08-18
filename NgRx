@@ -101,7 +101,9 @@
     !environment.production ? [storeFreeze] : [];
   //Meta Reducer is special type of reducer which applies after all reducers are completed
   
-  
+# ngrx/router-store: We can use this to enable time travel in develpoment mode. It provides 
+  bindings between angular router and store. We should do custom router serialization to 
+  reduce performance issues. See documentations for Custom Router State Serializer 
   
   
   
