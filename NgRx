@@ -44,9 +44,32 @@
   one action. Eg make a db call apart from storing the data in store
   
   -- scaffold
-  > ng g effect auth/Auth --module auth/auth.module.ts
+  > ng g effect auth/Auth --module auth/auth.module.ts //this registers all effects in module
   
+ auth.effects.ts
+ import {Actions, Effect, ofType} from '@ngrx/effects';
+ import {AuthActionTypes, Login, Logout} from './auth.actions';
+ 
+ @Injectable()
+ export class AuthEffects
+ {
+  constructor(private actions$:Actions, private router:Router){}
   
+  @Effect({dispatch:false}) //dispatch false means its not going to trigger any other action
+  login$ = this.actions$.pipe(
+    ofType<Login>(AuthActionTypes.LoginAction),
+    tap(action => localStorage.setItem("user", JSON.stringify(action.user)))
+  );
+  
+  @Effect({dispactch:false})
+  logout$ = this.actions$.pipe(
+    ofType<Logout>(AuthActionTypes.LogoutAction),
+    tap(() => {
+      localStorage.removeItem("user");
+      this.router.navigateByUrl('/login');
+    })
+  );
+ }
   
   
   
