@@ -58,7 +58,7 @@
   @Effect({dispatch:false}) //dispatch false means its not going to trigger any other action
   login$ = this.actions$.pipe(
     ofType<Login>(AuthActionTypes.LoginAction),
-    tap(action => localStorage.setItem("user", JSON.stringify(action.user)))
+    tap(action => localStorage.setItem("user", JSON.stringify(action.payload.user)))
   );
   
   @Effect({dispactch:false})
@@ -71,7 +71,21 @@
   );
  }
   
-  
+  //initialization side effect
+  //surviving refresh from the browser, this is also called initialization side effect
+  //this will create an observable when this class is instantiated
+ @Effect() //here we didn't write dispatch false because it dispathes one action(return action/observable)
+ //defer is function provided by rxjs this operator waits for someone to subscribe to this observable
+ //before creating observable
+ init$ = defer(() => {
+    const userData = localStorage.getItem("user");
+    if(userData){
+      retrun of(new Login(JSON.parse(userData)));
+    } else {
+      return of(new Logout());
+    }
+ });
+ 
   
   
   
