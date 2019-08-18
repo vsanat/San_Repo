@@ -85,7 +85,21 @@
       return of(new Logout());
     }
  });
- 
+
+# problem when we mutate the state 
+  - on-push change detection will not work, it works only on object reference change 
+  - we may beake the development tool, because it keeps the snapshot of multiple states so we can do time-travel
+  
+# ngrx-store-freeze: its a meta reducer that prevents the state from being mutated
+  - it freezes the current state
+  - when mutation occures, an exception will be thrown
+  - should be used only in development mode 
+  - npm i ngrx-store-freeze --save-dev
+  
+  //index.ts
+  export const metaReducers: MetaReducer<AppState>[] = 
+    !environment.production ? [storeFreeze] : [];
+  //Meta Reducer is special type of reducer which applies after all reducers are completed
   
   
   
