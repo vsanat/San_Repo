@@ -201,8 +201,20 @@ by (...) stating its an array not a single value. Or we can say it can be used t
     <ng-container *ngTemplateOutlet="load" ></ng-container> => ng-template's content will load here also, without any condition
   </div>
 
+ # Define the ng-content Directive?
+  Answer: Conventional HTML elements have some content between the tags. For instance:
   
-  
+  <p>Put your paragraph here</p>
+  Now consider the following example of having custom text between angular tags:
+
+  <app-work>This won’t work like HTML until you use ng-content Directive</app-work>
+  However, doing so won’t work the way it worked for HTML elements. In order to make it work just like the HTML 
+  example mentioned above, we need to use the ng-content Directive. Moreover, it is helpful in building reusable 
+  components. 
+  => app-work.html 
+      <h1>App works!</h1>
+      <ng-content></ng-content> //content will be projectd here
+
   
   
   
