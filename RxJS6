@@ -44,7 +44,7 @@
       <tr *ngFor="let lesson of lessons">
             <td>{{lesson.title}}</td>
 
-# shareReplay
+# shareReplay: reduce number of server calls. Keeps the result in memory and replay it to others as needed
       beginnerCourses$: Observable<Course[]>;
       advancedCourses$: Observable<Course[]>;
       
