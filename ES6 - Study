@@ -17,7 +17,7 @@ AA007HRWWM
 put - AA007HU16G
 
 for..of ==> can iterate thru only array gives value at that index
-for..in ==> iterate thru array/objesct if array then it will give index if object then properties
+for..in ==> iterate thru array/objesct if array then it will give index if object then keys
 
 * Promise: The Promise object represents the eventual completion (or failure) of an asynchronous operation, and its resulting value.
          const myFirstPromise = new Promise((resolve, reject) => {
@@ -55,7 +55,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
     against the target.
     var p = new Proxy(target, handler);
     
-* ES6 object destructuring ==>
+* ES6 object destructuring SPREAD Operator ==>
   var user = {name:'Sanat', add:'Bhilai', age:40}
   var {name, age} = user;
   console.log(name, age)    
@@ -64,3 +64,34 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 var ar2= {age:25}
 var ar3 = {...san, ...ar2} //{name: "san", age: 25}
 console.log(ar3)
+
+---------------------------------------------------------------------------------------------------------
+**for in , for of
+* for in -> this is availabe for both arrays and objects, in case of array it gives index(which is the key for array, because array is also an object) and for objects 
+it gives the key.
+  var details = {name:'san',age:30,add:'ind'};
+  for(let ob in details){
+    console.log(ob); //name, age, add
+  }
+  
+  var arr = ['a', 'b','c','d'];
+  for(let ar in arr){
+    console.log(ar); //0,1,2,3
+  }
+* for of -> this is only available for arrays and it gives the values 
+var arr = ['a', 'b', 'c', 'd'];
+for (let ar of arr) {
+  console.log(ar); //a,b,c,d
+}
+
+** REST parameter -> helps us to get n number of parameters in a function, it can be only the last parameter of the function
+(adding it at the begening doesnt make any sense, becasue it will hide other parameters)
+const sumUp = (...numbers) => {
+  let sum = 0;
+  for (let num of numbers) {
+    sum += num;
+  }
+  console.log(sum)
+};
+sumUp(1, 2, 3, 4);
+sumUp(1, 2, 3, 4,5,6,7);
