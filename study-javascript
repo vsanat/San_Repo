@@ -113,7 +113,7 @@ note2 -> if we change var i to let i then it will become local to for loop
     
 ** variable hoisting: js engine hoist the declared variable to the top of its scope
     c.l(a) ; //undefined, not an error(in strict also)
-    var a = 1;
+    var a = 1; //but if we use let instead of var above will give error
     
     above will be converted to 
     var a;
@@ -558,6 +558,23 @@ of outer function's variables if they are used in inner funtion, even after the 
     <----------------- X stop----------
     preventDefault: calling preventDefault in any event listener stops the default behaviour of the element, 
     say if we add prevent default in checkbox it will never get checked but this will not stop the events from propagation
+
+** Callback function => We can pass a function as parameter in another function and execute it on that function
+    const sumUp = (resultHandler, ...numbers) => {
+      let sum = 0;
+      for (let num of numbers) {
+        sum += num;
+      }
+      resultHandler(sum);
+    };
+    const showResult = result => {
+      alert('The sum of the numbers is: ' + result);
+    };
+    sumUp(showResult, 1, 2, 3, 4);
+    sumUp(showResult, 1, 2, 3, 4, 5, 6, 7);
+    sumUp((res) => {alert('The sum of the numbers is: ' + res)}, 1, 2, 3, 4, 5, 6, 7);  //we can also pass anonymous function as a parameter 
+
+
 
 
 =============================JavaScript for Web Developers ===========================================
