@@ -86,12 +86,23 @@ for (let ar of arr) {
 
 ** REST parameter -> helps us to get n number of parameters in a function, it can be only the last parameter of the function
 (adding it at the begening doesnt make any sense, becasue it will hide other parameters)
-const sumUp = (...numbers) => {
-  let sum = 0;
-  for (let num of numbers) {
-    sum += num;
-  }
-  console.log(sum)
-};
-sumUp(1, 2, 3, 4);
-sumUp(1, 2, 3, 4,5,6,7);
+  const sumUp = (...numbers) => {
+    let sum = 0;
+    for (let num of numbers) {
+      sum += num;
+    }
+    console.log(sum)
+  };
+  sumUp(1, 2, 3, 4);
+  sumUp(1, 2, 3, 4,5,6,7);
+
+** Before ES6 for same purpose(REST parameter) arguments was used, but it does not work on anonymous functions, it only works with the named functions
+  const subtractUp = function(){
+    let sub = 0;
+    for (let num of arguments) { ///here arguments keyword is used
+      sub -= num;
+    }
+    console.log(sub)
+  };
+  subtractUp(1, 2, 3, 4);
+  subtractUp(1, 2, 3, 4,5,6,7);
