@@ -573,8 +573,27 @@ of outer function's variables if they are used in inner funtion, even after the 
     sumUp(showResult, 1, 2, 3, 4);
     sumUp(showResult, 1, 2, 3, 4, 5, 6, 7);
     sumUp((res) => {alert('The sum of the numbers is: ' + res)}, 1, 2, 3, 4, 5, 6, 7);  //we can also pass anonymous function as a parameter 
-
-
+** bind() method => bind method can be used to pass parameters to a callback function before even it is called, in above example we cannot pass parameter
+to showResult callback function if we do this sumUp(showResult('Some message'), 1, 2, 3, 4); it will immediately execute the callback function.
+So to solve this problem we can use bind method which is available in every function. The parameter we pass in the bind method becomes the first param of the function
+    const sumUp = (resultHandler, operator, ...numbers) => {
+      let sum = 0;
+      if (operator === 'ADD') {
+        for (let num of numbers) {
+          sum += num;
+        }
+      } else {
+        for (let num of numbers) {
+          sum -= num;
+        }
+      }
+      resultHandler(sum);
+    };
+    const showResult = (messageText, result) => {
+      console.log(messageText, result);
+    };
+    sumUp(showResult.bind(this, 'The + of the numbers is:'), 'ADD', 1, 2, 3, 4);
+    sumUp(showResult.bind(this, 'The - of the numbers is:'), 'SUB', 1, 2, 3, 4);
 
 
 =============================JavaScript for Web Developers ===========================================
