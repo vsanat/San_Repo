@@ -337,6 +337,12 @@ of outer function's variables if they are used in inner funtion, even after the 
     san.checkThis();
 
     we can use - call, apply and bind to stabilize 'this' 
+ ** function san(param1, param2){
+	    console.log(param1, param2);
+    }
+    san.apply(this, [1,2]); //1 2
+    san.call(this, 1,2); //1 2
+    san.bind(this, 1,2)(); //1 2
 
 ** prototype chaining
     var animal = {
