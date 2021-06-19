@@ -1,3 +1,5 @@
+Ecma => European computor manufacturers association, stadndardized the js, and new scripting language called ECMAScript
+
 ** what is "use strict" - this is useful in debug mode, the code which fails silently will now generate errors, it is a string,
     because it can be simply ignored by the older browser which doesn't support strict mode, we can add it explicitly in a function 
     or out side of a function.
@@ -607,11 +609,21 @@ So to solve this problem we can use bind method which is available in every func
    ** generally we should use querySelector or querySelectorAll
    	querySelector('#id') querySelector('.classname') querySelector('h1') ==> it always gives first matching element
 	querySelector('ul li:first-of-type') querySelector('ul li:last-of-type')
-=============================JavaScript for Web Developers ===========================================
-Ecma => European computor manufacturers association, stadndardized the js, and new scripting language called ECMAScript
 
+** defer and async keywords: Browser scans the html top to bottom, if it finds script tag on head it will first download the sctipt 
+	after that parse the html, if the script tag is in the body towards the end then browser will download the script after the DOM 
+	parsing is done.
+	* <head> <script src="assets/scripts/app.js" defer></script> </head>	
+	defer keyword tells browser to download the script rightway(it does not block the DOM parsing it happens asynchronously) but do not execute it untill the DOM is parsed
+	* <head> <script src="assets/scripts/app.js" defer></script> </head>
+	sometimes we want to load the script early and execute them early when it does not rely on html code, so in this case we can use
+	async it will download the script asynchronously and execute it rightaway.
+	* difference between defer and async is that defer guranties the sequence of the scripts for execution
 
-
+** if we do this.. interenal script will be ignored only src file will be executed
+	<script src="assets/scripts/app.js">
+		alert('Hi'); // this will not show up, because of src attribute
+	</script> 
 
 
 
