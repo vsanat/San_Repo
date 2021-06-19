@@ -601,7 +601,12 @@ So to solve this problem we can use bind method which is available in every func
     sumUp(showResult.bind(this, 'The + of the numbers is:'), 'ADD', 1, 2, 3, 4);
     sumUp(showResult.bind(this, 'The - of the numbers is:'), 'SUB', 1, 2, 3, 4);
 
-
+** Querying elements:
+   * querySelector(CSS selector or id) and getElementById(id) => these two returns single element
+   * querySelectorAll(CSS or tag name) and getElementsByTagName()=> returns array like object
+   ** generally we should use querySelector or querySelectorAll
+   	querySelector('#id') querySelector('.classname') querySelector('h1') ==> it always gives first matching element
+	querySelector('ul li:first-of-type') querySelector('ul li:last-of-type')
 =============================JavaScript for Web Developers ===========================================
 Ecma => European computor manufacturers association, stadndardized the js, and new scripting language called ECMAScript
 
