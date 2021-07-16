@@ -645,7 +645,7 @@ So to solve this problem we can use bind method which is available in every func
 ** classes: 
 	class Human {
 	  constructor(){
-	    this.gender = 'Male';
+	    this.gender = 'male';
 	  }
 	  printGender(){
 	    console.log(this.gender);
@@ -656,6 +656,7 @@ So to solve this problem we can use bind method which is available in every func
 	  constructor(){
 	    super(); //we must use this to call the constructor of parent class
 	    this.name = 'Max';
+	    //this.gender = 'female'
 	  }
 	  printName(){
 	    console.log(this.name);
@@ -665,5 +666,8 @@ So to solve this problem we can use bind method which is available in every func
 	const person = new Person();
 	person.printName();
 	person.printGender();
+	//in ES7 we dont have to use constructor function 
+	//we can directly create variables as class member
+	//name = 'San'
 
 
