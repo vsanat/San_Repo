@@ -625,8 +625,22 @@ So to solve this problem we can use bind method which is available in every func
 		alert('Hi'); // this will not show up, because of src attribute
 	</script> 
 
-
-
+** Export and import modules(different js files): 
+	//person.js
+	const person = { name :'Max' }
+	export default person;
+	
+	//utility.js
+	export const clean =() =>{...}
+	export const baseData = 10;
+	
+	//app.js
+	import prs from './person.js'; // whatever we import from person.js file it will always be person
+	import {baseData} from './utility.js'; // these are named exports so using {}
+	import {clean} from './utility.js';
+	//or import {bsaeData, clean} from './utility.js';
+	//or import {baseData as bd} from './utility.js';
+	//or import * as bundled from './utility.js'; // then use bundled.baseData, bundled.clean
 
 
 
