@@ -642,6 +642,28 @@ So to solve this problem we can use bind method which is available in every func
 	//or import {baseData as bd} from './utility.js';
 	//or import * as bundled from './utility.js'; // then use bundled.baseData, bundled.clean
 
+** classes: 
+	class Human {
+	  constructor(){
+	    this.gender = 'Male';
+	  }
+	  printGender(){
+	    console.log(this.gender);
+	  }
+	}
 
+	class Person extends Human {
+	  constructor(){
+	    super(); //we must use this to call the constructor of parent class
+	    this.name = 'Max';
+	  }
+	  printName(){
+	    console.log(this.name);
+	  }
+	}
+
+	const person = new Person();
+	person.printName();
+	person.printGender();
 
 
