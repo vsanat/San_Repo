@@ -677,3 +677,13 @@ So to solve this problem we can use bind method which is available in every func
 		where start and end represent the index of items in that array. The original array will not be modified.
 		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
 
+** push, pop, unshift, shift
+	let hobbies = ['Cooking', 'Sleeping'];
+	let newLengthAfterPush = hobbies.push('Coding'); //Added at the end
+	console.log(newLengthAfterPush); //3
+	let newLengthAfterUnshift = hobbies.unshift('Movies'); //Added at the begening
+	console.log(newLengthAfterUnshift); //4
+	let poppedElement = hobbies.pop(); //Removes last element and return its value 
+	console.log(poppedElement); //Coding
+	let shiftedElement = hobbies.shift(); //Removes first element and return its value 
+	console.log(shiftedElement); //Movies
