@@ -673,6 +673,31 @@ So to solve this problem we can use bind method which is available in every func
 ** splice and slice functions:
 	splice: splice method changes the contents of an array by removing or replacing existing elements and/or adding new elements in place
 		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+	splice(startIndex?, deleteCount?, addItems?)
+	//            0      1      2         3        4     5
+	let months = ['Jan', 'Feb', 'March', 'April', 'May', 'Jun'];
+	//console.log(months.splice()); // no change
+	//months.splice(0); // This will delete everything
+	//console.log(months); // []
+
+	//months.splice(0, 0); // This will not delete anything
+	//months.splice(0, 0, 'July'); // This will not delete anything but add July at the begening
+
+	//months.splice(0, 1); // Starting with index 0 delete 1 item
+	//console.log(months);// ["Feb", "March", "April", "May", "Jun"]
+
+	//months.splice(2, 1); // Starting with index 2 delete 1 item
+	//console.log(months);// ["Jan", "Feb", "April", "May", "Jun"]
+
+	//months.splice(2,2); // Starting with index 2 delete 2 items
+	//console.log(months);// ["Jan", "Feb", "May", "Jun"]
+
+	//months.splice(2, 2, "July"); // Starting with index 2 delete 2 items and add one item
+	//console.log(months);// ["Jan", "Feb", "July", "May", "Jun"]
+
+
+
+	    
 	slice: The slice() method returns a shallow copy of a portion of an array into a new array object selected from start to end (end not included) 
 		where start and end represent the index of items in that array. The original array will not be modified.
 		https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
