@@ -687,3 +687,18 @@ So to solve this problem we can use bind method which is available in every func
 	console.log(poppedElement); //Coding
 	let shiftedElement = hobbies.shift(); //Removes first element and return its value 
 	console.log(shiftedElement); //Movies
+** Array: Different ways of creating arrays
+	# let a0 = ['Hello'];
+	# let a1 = Array('Hello');
+	# let a3 = Array.of('Hello');
+	# let a4 = Array.from('Hello'); => converts array like objects to real arrays
+		console.log(a4) //["H", "e", "l", "l", "o"]
+	# let threeDiArray = [[[1,2]], [[3,4]], [[5,6]]]
+		console.log(threeDiArray[1][0][0]) //3
+	# Strange behaviours	
+	let ar1 = [4]; // this will create array of length 4 all undefined values
+	let ar2 = [0,1,2,3]; //index 4 does not exists
+	ar2[5] = 5; // adding value at index 5, this will add undefined value at index 4
+	console.log(ar2[4]) // undefined
+	console.log(ar2[5]) // 5
+	
