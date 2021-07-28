@@ -688,9 +688,9 @@ So to solve this problem we can use bind method which is available in every func
 	let shiftedElement = hobbies.shift(); //Removes first element and return its value 
 	console.log(shiftedElement); //Movies
 ** Array: Different ways of creating arrays
-	# let a0 = ['Hello'];
-	# let a1 = Array('Hello');
-	# let a3 = Array.of('Hello');
+	# let a1 = ['Hello'];
+	# let a2 = Array('Hello');
+	# let a3 = Array.of('Hello'); //a1, a2 and a3 are same, but a1 is the fastest of all
 	# let a4 = Array.from('Hello'); => converts array like objects to real arrays
 		console.log(a4) //["H", "e", "l", "l", "o"]
 	# let threeDiArray = [[[1,2]], [[3,4]], [[5,6]]]
