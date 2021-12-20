@@ -106,3 +106,8 @@ for (let ar of arr) {
   };
   subtractUp(1, 2, 3, 4);
   subtractUp(1, 2, 3, 4,5,6,7);
+
+** Check if two javascript objects are instance of same class type
+  const pt = new Point();
+  const pt2 = new Point();
+  console.log(pt.constructor == pt2.constructor); // True
